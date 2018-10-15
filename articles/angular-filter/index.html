@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="true/articles/angular-filter/">
+    
+    
+    <title>AngularJS踩坑之路(三)：过滤器 | 独孤剑走偏锋</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#000000">
+    
+    
+    <meta name="keywords" content="angularJs">
+    <meta name="description" content="过滤器是我们开发过程中经常会用到的东西，实际上，我们在开发中所写的格式化数据的一些函数也可以称之为过滤器，在我以前所用的框架中，过滤器都是自己写的，vue的内置过滤器也只有4种过滤器，一般满足不了我们的需求，但是AngularJS的内置过滤器就不一样了，有9种过滤器，基本可以满足我们日常开发所需，如不满足也没关系，因为我们可以自定义过滤器。">
+<meta name="keywords" content="angularJs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AngularJS踩坑之路(三)：过滤器">
+<meta property="og:url" content="https://eviler.top/articles/angular-filter/index.html">
+<meta property="og:site_name" content="独孤剑走偏锋">
+<meta property="og:description" content="过滤器是我们开发过程中经常会用到的东西，实际上，我们在开发中所写的格式化数据的一些函数也可以称之为过滤器，在我以前所用的框架中，过滤器都是自己写的，vue的内置过滤器也只有4种过滤器，一般满足不了我们的需求，但是AngularJS的内置过滤器就不一样了，有9种过滤器，基本可以满足我们日常开发所需，如不满足也没关系，因为我们可以自定义过滤器。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-10-15T11:37:22.752Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AngularJS踩坑之路(三)：过滤器">
+<meta name="twitter:description" content="过滤器是我们开发过程中经常会用到的东西，实际上，我们在开发中所写的格式化数据的一些函数也可以称之为过滤器，在我以前所用的框架中，过滤器都是自己写的，vue的内置过滤器也只有4种过滤器，一般满足不了我们的需求，但是AngularJS的内置过滤器就不一样了，有9种过滤器，基本可以满足我们日常开发所需，如不满足也没关系，因为我们可以自定义过滤器。">
+    
+        <link rel="alternate" type="application/atom+xml" title="独孤剑走偏锋" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/eviler.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/headBack.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/eviler.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Eviler Zhao</h5>
+          <a href="mailto:2922204320@qq.com" title="2922204320@qq.com" class="mail">2922204320@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/evilerSS" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">AngularJS踩坑之路(三)：过滤器</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">AngularJS踩坑之路(三)：过滤器</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-10-15T01:19:41.000Z" itemprop="datePublished" class="page-time">
+  2018-10-15
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#过滤器使用效果预览"><span class="post-toc-number">1.</span> <span class="post-toc-text">过滤器使用效果预览</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#货币格式过滤器：currency"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">货币格式过滤器：currency</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#时间格式过滤器：date"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">时间格式过滤器：date</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数字格式过滤器：number"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">数字格式过滤器：number</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#字母格式过滤器：uppercase-amp-lowercase"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">字母格式过滤器：uppercase &amp; lowercase</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数组排序过滤器：orderBy"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">数组排序过滤器：orderBy</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#过滤器：limitTo"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">过滤器：limitTo</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#过滤器：filter"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">过滤器：filter</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#格式化json对象过滤器：json"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">格式化json对象过滤器：json</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#自定义过滤器"><span class="post-toc-number">1.9.</span> <span class="post-toc-text">自定义过滤器</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码"><span class="post-toc-number">2.</span> <span class="post-toc-text">代码</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-angular-filter"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">AngularJS踩坑之路(三)：过滤器</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-10-15 09:19:41" datetime="2018-10-15T01:19:41.000Z"  itemprop="datePublished">2018-10-15</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>过滤器是我们开发过程中经常会用到的东西，实际上，我们在开发中所写的格式化数据的一些函数也可以称之为过滤器，在我以前所用的框架中，过滤器都是自己写的，vue的内置过滤器也只有4种过滤器，一般满足不了我们的需求，但是AngularJS的内置过滤器就不一样了，有9种过滤器，基本可以满足我们日常开发所需，如不满足也没关系，因为我们可以自定义过滤器。<br><a id="more"></a></p>
+<h2 id="过滤器使用效果预览"><a href="#过滤器使用效果预览" class="headerlink" title="过滤器使用效果预览"></a>过滤器使用效果预览</h2><p><em>提示：字符’|’称为管道符</em></p>
+<h3 id="货币格式过滤器：currency"><a href="#货币格式过滤器：currency" class="headerlink" title="货币格式过滤器：currency"></a>货币格式过滤器：currency</h3><ul><br>    <li class="ng-binding">未使用过滤器：4999</li><br>    <li class="ng-binding">使用默认过滤器：$4,999.00</li><br>    <li class="ng-binding">使用自定义传参过滤器：￥4,999.00</li><br></ul>
+
+<h3 id="时间格式过滤器：date"><a href="#时间格式过滤器：date" class="headerlink" title="时间格式过滤器：date"></a>时间格式过滤器：date</h3><ul><br>    <li class="ng-binding">未使用过滤器：1539570721577</li><br>    <li class="ng-binding">使用默认过滤器：Oct 15, 2018</li><br>    <li class="ng-binding">使用自定义传参过滤器：2018-10-15 Monday, 10:32:01 AM</li><br></ul>
+
+<h3 id="数字格式过滤器：number"><a href="#数字格式过滤器：number" class="headerlink" title="数字格式过滤器：number"></a>数字格式过滤器：number</h3><ul><br>    <li class="ng-binding">未使用过滤器：1234567890</li><br>    <li class="ng-binding">使用默认过滤器：1,234,567,890</li><br>    <li class="ng-binding">使用自定义传参过滤器：1,234,567,890.00</li><br></ul>
+
+<h3 id="字母格式过滤器：uppercase-amp-lowercase"><a href="#字母格式过滤器：uppercase-amp-lowercase" class="headerlink" title="字母格式过滤器：uppercase &amp; lowercase"></a>字母格式过滤器：uppercase &amp; lowercase</h3><ul><br>    <li class="ng-binding">原字符串：Hello</li><br>    <li class="ng-binding">uppercase过滤器：HELLO</li><br>    <li class="ng-binding">lowercase过滤器：hello</li><br></ul>
+
+<h3 id="数组排序过滤器：orderBy"><a href="#数组排序过滤器：orderBy" class="headerlink" title="数组排序过滤器：orderBy"></a>数组排序过滤器：orderBy</h3><p>原对象数组（未排序）：</p>
+<ul><br>    <li class="ng-scope ng-binding">Apple—7999</li><br>    <li class="ng-scope ng-binding">Samsung—4998</li><br>    <li class="ng-scope ng-binding">Huawei—3999</li><br>    <li class="ng-scope ng-binding">Meizu—1998</li><br></ul><br>排序后（根据price进行排序，并且反向排序，即由大到小排序）：<br><ul><br>    <li class="ng-scope ng-binding">Apple—7999</li><br>    <li class="ng-scope ng-binding">Samsung—4998</li><br>    <li class="ng-scope ng-binding">Huawei—3999</li><br>    <li class="ng-scope ng-binding">Meizu—1998</li><br></ul>
+
+<h3 id="过滤器：limitTo"><a href="#过滤器：limitTo" class="headerlink" title="过滤器：limitTo"></a>过滤器：limitTo</h3><p>用于数组(最多显示两项，本来有四项)：</p>
+<ul><br>    <li class="ng-scope ng-binding">Apple—7999</li><br>    <li class="ng-scope ng-binding">Samsung—4998</li><br></ul><br>用于字符串：<br><ul><br>    <li class="ng-scope ng-binding">原字符串：Hello</li><br>    <li class="ng-scope ng-binding">取前三个字符：Hel</li><br>    <li class="ng-scope ng-binding">取后三个字符：llo</li><br></ul>
+
+<h3 id="过滤器：filter"><a href="#过滤器：filter" class="headerlink" title="过滤器：filter"></a>过滤器：filter</h3><p>filter根据传入的参数从给定的数组中选择一个子集，并生成一个新数组返回<br><br>原数据：</p>
+<p><ul><br>    <li class="ng-scope ng-binding">Apple—7999</li><br>    <li class="ng-scope ng-binding">Samsung—4998</li><br>    <li class="ng-scope ng-binding">Meizu—1998</li><br>    <li class="ng-scope ng-binding">Huawei—3999</li><br></ul><br>过滤后(过滤含有字符’i’的项))：</p>
+<p><ul><br>    <li class="ng-scope ng-binding">Meizu—1998</li><br>    <li class="ng-scope ng-binding">Huawei—3999</li><br></ul><br><em>注意：此过滤方式不区分字段，即只要单个项中存在所匹配内容（’i’），这个phone就会被匹配</em></p>
+<h3 id="格式化json对象过滤器：json"><a href="#格式化json对象过滤器：json" class="headerlink" title="格式化json对象过滤器：json"></a>格式化json对象过滤器：json</h3><p>这个就和我们熟悉的JSON.stringify()作用一样<br> 用法：{ { jsonTest | json } }(去掉两个大括号之间的空格)<br><br></p>
+<h3 id="自定义过滤器"><a href="#自定义过滤器" class="headerlink" title="自定义过滤器"></a>自定义过滤器</h3><p>上面所讲的几种过滤器都是angular内置的过滤器，提供给的功能有时候只能解决我们的部分需求，这时候就需要我们来使用自定义过滤器了。</p>
+<p><ul><br>    <li class="ng-binding">原字符串：Hello<br>    使用自定义过滤器myFilter（将字符串字符转化为大写）：HELLO<br>    </li><br>    <li class="ng-binding">原数组：[1,2,3,4,5]<br>    使用自定义过滤器arrFilter（每一项值的下标次幂，Math.pow(arr[index],index)）：[1,2,9,64,625]<br>    </li><br></ul><br><em>注意：自定义过滤器必须有返回值</em></p>
+<p>最后再说一下，这些过滤器是可以连用的，怎样使用？用管道符连接即可。</p>
+
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>为了方便书写，我直接把上面输出结果的代码都写在了这里：</p>
+<pre><code>&lt;html ng-app=&quot;myApp&quot; id=&quot;ng-app&quot;&gt;
+&lt;head&gt;
+    &lt;title&gt;Angular&lt;/title&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.0-beta.7/angular.min.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div ng-controller=&quot;myController&quot;&gt;
+        &lt;em&gt;提示：字符&apos;|&apos;称为管道符&lt;/em&gt;
+        &lt;h4&gt;货币格式过滤器：currency&lt;/h4&gt;
+        &lt;ul&gt;
+            &lt;li&gt;未使用过滤器：{{price}}&lt;/li&gt;
+            &lt;li&gt;使用默认过滤器：{{price | currency}}&lt;/li&gt;
+            &lt;li&gt;使用自定义传参过滤器：{{price | currency:'￥'}}&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;h4&gt;时间格式过滤器：date&lt;/h4&gt;
+        &lt;ul&gt;
+            &lt;li&gt;未使用过滤器：{{time}}&lt;/li&gt;
+            &lt;li&gt;使用默认过滤器：{{time | date}}&lt;/li&gt;
+            &lt;li&gt;使用自定义传参过滤器：{{time | date:'yyyy-MM-dd EEEE, hh:mm:ss a'}}&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;h4&gt;数字格式过滤器：number &lt;/h4&gt;
+        &lt;ul&gt;
+            &lt;li&gt;未使用过滤器：{{count}}&lt;/li&gt;
+            &lt;li&gt;使用默认过滤器：{{count | number}}&lt;/li&gt;
+            &lt;li&gt;使用自定义传参过滤器：{{count | number:2}}&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;h4&gt;字母格式过滤器：uppercase &amp; lowercase&lt;/h4&gt;
+        &lt;ul&gt;
+
+            &lt;li&gt;原字符串：{{'Hello'}}&lt;/li&gt;
+            &lt;li&gt;uppercase过滤器：{{'Hello' | uppercase}}&lt;/li&gt;
+            &lt;li&gt;lowercase过滤器：{{'Hello' | lowercase}}&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;h4&gt;数组排序过滤器：orderBy&lt;/h4&gt;
+        &lt;div&gt;
+            &lt;h5&gt;原对象数组（未排序）：&lt;/h5&gt;
+            &lt;ul&gt;
+                &lt;li &gt;
+                    {{phone.name}}---{{phone.price}}
+                &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;h5&gt;排序后（根据price进行排序，并且反向排序，即由大到小排序）：&lt;/h5&gt;
+            &lt;ul&gt;
+                &lt;li &gt;
+                    {{phone.name}}---{{phone.price}}
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+        &lt;h4&gt;过滤器：limitTo&lt;/h4&gt;
+        &lt;div&gt;
+            &lt;h5&gt;用于数组(最多显示两项，本来有四项)：&lt;/h5&gt;
+            &lt;ul&gt;
+                &lt;li &gt;
+                    {{phone.name}}---{{phone.price}}
+                &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;h5&gt;用于字符串：&lt;/h5&gt;
+            &lt;ul&gt;
+                &lt;li&gt;原字符串：Hello&lt;/li&gt;
+                &lt;li&gt;取前三个字符：{{"Hello" | limitTo:3}}&lt;/li&gt;
+                &lt;li&gt;取后三个字符：{{"Hello" | limitTo:-3}}&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+        &lt;h4&gt;过滤器：filter&lt;/h4&gt;
+        &lt;div&gt;
+            &lt;p&gt;filter根据传入的参数从给定的数组中选择一个子集，并生成一个新数组返回&lt;/p&gt;
+            &lt;h5&gt;原数据：&lt;/h5&gt;
+            &lt;ul&gt;
+                &lt;li &gt;
+                    {{phone.name}}---{{phone.price}}
+                &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;h5&gt;过滤后(过滤含有字符&apos;i&apos;的项))：&lt;/h5&gt;
+            &lt;ul&gt;
+                &lt;li &gt;
+                    {{phone.name}}---{{phone.price}}
+                &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;em&gt;注意：此过滤方式不区分字段，即只要单个项中存在所匹配内容（&apos;i&apos;），这个phone就会被匹配&lt;/em&gt;
+        &lt;/div&gt;
+        &lt;h4&gt;格式化json对象过滤器：json&lt;/h4&gt;
+        &lt;div&gt;
+            &lt;p&gt;这个就和我们熟悉的JSON.stringify()作用一样&lt;br&gt; 用法：{ { jsonTest | json } }(去掉两个大括号之间的空格)
+            &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;h4&gt;自定义过滤器&lt;/h4&gt;
+        &lt;div&gt;
+            &lt;p&gt;上面所讲的几种过滤器都是angular内置的过滤器，提供给的功能有时候只能解决我们的部分需求，这时候就需要我们来使用自定义过滤器了。&lt;/p&gt;
+            &lt;ul&gt;
+                &lt;li&gt;原字符串：Hello
+                使用自定义过滤器myFilter（将字符串字符转化为大写）：{{"Hello" | myFilter}}
+                &lt;/li&gt;
+                &lt;li&gt;原数组：{{arr}}
+                使用自定义过滤器arrFilter（每一项值的下标次幂，Math.pow(arr[index],index)）：{{arr | arrFilter}}
+                &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;em&gt;注意：自定义过滤器必须有返回值&lt;/em&gt;
+        &lt;/div&gt;
+        &lt;p&gt;最后再说一下，这些过滤器是可以连用的，怎样使用？用管道符连接即可。&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;script&gt;
+    var app = angular.module(&quot;myApp&quot;, []);
+    app.run([&quot;$rootScope&quot;, function($rootScope) {}]);
+    app.controller(&quot;myController&quot;, [&quot;$scope&quot;, function($scope) {
+        $scope.orderKey = &quot;price&quot;;
+        $scope.isOrderReverse = true;
+        $scope.filterKey = &apos;i&apos;;
+        $scope.price = 4999;
+        $scope.time = Date.now();
+        $scope.count = 1234567890;
+        $scope.phones = [{
+            name: &quot;Apple&quot;,
+            price: 7999
+        }, {
+            name: &quot;Samsung&quot;,
+            price: 4998
+        }, {
+            name: &quot;Meizu&quot;,
+            price: 1998
+        }, {
+            name: &quot;Huawei&quot;,
+            price: 3999
+        }];
+        $scope.arr = [1, 2, 3, 4, 5];
+    }]);
+    app.filter(&quot;myFilter&quot;, function() {
+        return function(val) {
+            return val.toUpperCase()
+        }
+    })
+    app.filter(&quot;arrFilter&quot;, function() {
+        return function(val) {
+            return val.map(Math.pow);
+        }
+    })
+&lt;/script&gt;
+&lt;/html&gt;
+</code></pre>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-10-15T11:37:22.752Z" itemprop="dateUpdated">2018-10-15 19:37:22</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://eviler.top">
+            <img src="/img/eviler.png" alt="Eviler Zhao">
+            Eviler Zhao
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angularJs/">angularJs</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://eviler.top/articles/angular-filter/&title=《AngularJS踩坑之路(三)：过滤器》 — 独孤剑走偏锋&pic=https://eviler.top/img/eviler.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://eviler.top/articles/angular-filter/&title=《AngularJS踩坑之路(三)：过滤器》 — 独孤剑走偏锋&source=过滤器是我们开发过程中经常会用到的东西，实际上，我们在开发中所写的格式化数据的一些函数也可以称之为过滤器，在我以前所用的框架中，过滤器都是自己写的，vue..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://eviler.top/articles/angular-filter/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《AngularJS踩坑之路(三)：过滤器》 — 独孤剑走偏锋&url=https://eviler.top/articles/angular-filter/&via=https://eviler.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://eviler.top/articles/angular-filter/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/articles/angular-case-commodityShow/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">AngularJS踩坑之路(四)：商品展示案例</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/articles/angular-controller/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">AngularJS踩坑之路(二)：控制器</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Eviler Zhao &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://eviler.top/articles/angular-filter/&title=《AngularJS踩坑之路(三)：过滤器》 — 独孤剑走偏锋&pic=https://eviler.top/img/eviler.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://eviler.top/articles/angular-filter/&title=《AngularJS踩坑之路(三)：过滤器》 — 独孤剑走偏锋&source=过滤器是我们开发过程中经常会用到的东西，实际上，我们在开发中所写的格式化数据的一些函数也可以称之为过滤器，在我以前所用的框架中，过滤器都是自己写的，vue..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://eviler.top/articles/angular-filter/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《AngularJS踩坑之路(三)：过滤器》 — 独孤剑走偏锋&url=https://eviler.top/articles/angular-filter/&via=https://eviler.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://eviler.top/articles/angular-filter/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACNElEQVR42u3ay26DQAwF0P7/T9NtqghybZNKzJxZRSkNHBaWXz8/8Tlezus3Z9e8X/l+fXKXmw8GBsZjGcfluX7E/K/XryO/7ykVAwNjA8ZZBEs+V3mTK0+/x8DAwLi8Jk8K828wMDAw5gG3V5rmrwMDAwOjV8Tm4XheEn+xFsfAwHggI++6///nr8w3MDAwHsU4iqeXMl4/Vh5eT58KAwNjaUYe4JI0brKckfzmh//FwMDYjFENo9eN/uqqWQKLuoYYGBjLMaptrMl4oDeq/IDBwMBYmlEtKXtB84YyNUgrMTAw1mPkqwy9BHEe0G/bFsHAwHgso7dy0Rsh9JYnyq8AAwNjOUZ12SvH9BY18uHBn1/AwMDYgJEngpMhZTW5LDTvMDAwlmZUC8ikMTdp3vXWODAwMHZgTArXSYGaP2Jz2QIDA2MJRpLe5R2tycJEnmhGRSwGBsZmjGrTbZ4I5mEaAwNjB0a14dVrn03GD4XwjYGBsTQjb/dXP/f2PpKVssJyGAYGxhKMfGA5GVVWu4DJ4sVp0w0DA2MbRlKazovSXpEc5a0YGBiLMsrlYnzL5AXlA84PqSEGBsZCjKN4eg24+VCh0FzDwMBYjpGfyUpENdWrNvIwMDB2YFQHk82xYjGJzAcJGBgY+zCqgW+SPubP0NwZwcDAwGgF4rxsTpqAp11DDAwMjOL08K72WYTBwMDYgFENfzm+t3iRvxoMDIwdGPNeVp5ETlp4Nww1MTAwnsf4Be5LIuBjAKbEAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '君于何处?待君归来~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '君归矣，善哉！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
