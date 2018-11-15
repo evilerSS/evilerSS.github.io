@@ -31,17 +31,10 @@
 <meta property="og:site_name" content="独孤剑走偏锋">
 <meta property="og:description" content="前段时间电脑系统坏了，重新装系统后便是繁琐的软件重装了（对于程序猿来说，开发环境才是大事），这不，重装vscode插件livereload时，竟然忘了它怎么用了！！！？于是有要百度一波，但是，查了好几个博客才解决了我的问题，都怪自己记性不好啦。不多说了，步入正题。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://eviler.top/articles/plugin-livereload/20181012203033527.png">
-<meta property="og:image" content="https://eviler.top/articles/plugin-livereload/20181012204713760.png">
-<meta property="og:image" content="https://eviler.top/articles/plugin-livereload/20181012205948469.png">
-<meta property="og:image" content="https://eviler.top/articles/plugin-livereload/20181012205603694.png">
-<meta property="og:image" content="https://eviler.top/articles/plugin-livereload/20181012205948469.png">
-<meta property="og:image" content="https://eviler.top/articles/plugin-livereload/20181012210702410.png">
-<meta property="og:updated_time" content="2018-11-15T14:31:20.326Z">
+<meta property="og:updated_time" content="2018-11-15T14:34:41.665Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vscode插件livereload配合chrome扩展程序livereload实现网页自动刷新(保存时)">
 <meta name="twitter:description" content="前段时间电脑系统坏了，重新装系统后便是繁琐的软件重装了（对于程序猿来说，开发环境才是大事），这不，重装vscode插件livereload时，竟然忘了它怎么用了！！！？于是有要百度一波，但是，查了好几个博客才解决了我的问题，都怪自己记性不好啦。不多说了，步入正题。">
-<meta name="twitter:image" content="https://eviler.top/articles/plugin-livereload/20181012203033527.png">
     
         <link rel="alternate" type="application/atom+xml" title="独孤剑走偏锋" href="/atom.xml">
     
@@ -166,13 +159,6 @@
 
 <div class="container body-wrap">
     
-    <aside class="post-widget">
-        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第一步，下载并安装vscode插件livereload"><span class="post-toc-number">1.</span> <span class="post-toc-text">第一步，下载并安装vscode插件livereload</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第二步，启动livereload-server"><span class="post-toc-number">2.</span> <span class="post-toc-text">第二步，启动livereload  server</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第三步，安装谷歌浏览器插件LiveReload"><span class="post-toc-number">3.</span> <span class="post-toc-text">第三步，安装谷歌浏览器插件LiveReload</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第四步，打开livereload插件设置，启用扩展程序和允许访问文件网站"><span class="post-toc-number">4.</span> <span class="post-toc-text">第四步，打开livereload插件设置，启用扩展程序和允许访问文件网站</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第五步，谷歌浏览器开启此服务"><span class="post-toc-number">5.</span> <span class="post-toc-text">第五步，谷歌浏览器开启此服务</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第六步，没有了"><span class="post-toc-number">6.</span> <span class="post-toc-text">第六步，没有了</span></a></li></ol>
-        </nav>
-    </aside>
-
 
 <article id="post-plugin-livereload"
   class="post-article article-type-post fade" itemprop="blogPost">
@@ -196,48 +182,6 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <p>前段时间电脑系统坏了，重新装系统后便是繁琐的软件重装了（对于程序猿来说，开发环境才是大事），这不，重装vscode插件livereload时，竟然忘了它怎么用了！！！？于是有要百度一波，但是，查了好几个博客才解决了我的问题，都怪自己记性不好啦。不多说了，步入正题。<br><a id="more"></a></p>
-<h2 id="第一步，下载并安装vscode插件livereload"><a href="#第一步，下载并安装vscode插件livereload" class="headerlink" title="第一步，下载并安装vscode插件livereload"></a>第一步，下载并安装vscode插件livereload</h2><p>在vscode中搜索扩展livereload，选择第一个并点击安装，安装完成后点击重新加载<br><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/articles/plugin-livereload/20181012203033527.png" alt="截图1" title="">
-                </div>
-                <div class="image-caption">截图1</div>
-            </figure></p>
-<h2 id="第二步，启动livereload-server"><a href="#第二步，启动livereload-server" class="headerlink" title="第二步，启动livereload  server"></a>第二步，启动livereload  server</h2><p>同时按ctrl+shift+p,输入框内输入livereload，就会显示LiveReload:Enable/disable server，点一下就会开启这个服务（再点会关闭，所以如果遇到服务没有开启的问题可以再点一下试试）。</p>
-<h2 id="第三步，安装谷歌浏览器插件LiveReload"><a href="#第三步，安装谷歌浏览器插件LiveReload" class="headerlink" title="第三步，安装谷歌浏览器插件LiveReload"></a>第三步，安装谷歌浏览器插件LiveReload</h2><p>谷歌浏览器网上应用商店搜索（科学上网，自行解决/嘿嘿，也可以百度这个扩展程序，很容易找到的）：LiveReload，安装下图中的扩展程序:<br><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/articles/plugin-livereload/20181012204713760.png" alt="截图2" title="">
-                </div>
-                <div class="image-caption">截图2</div>
-            </figure></p>
-<h2 id="第四步，打开livereload插件设置，启用扩展程序和允许访问文件网站"><a href="#第四步，打开livereload插件设置，启用扩展程序和允许访问文件网站" class="headerlink" title="第四步，打开livereload插件设置，启用扩展程序和允许访问文件网站"></a>第四步，打开livereload插件设置，启用扩展程序和允许访问文件网站</h2><p>启用此拓展程序，此程序启用后浏览器右上角会多出一个图标：<br><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/articles/plugin-livereload/20181012205948469.png" alt="截图3" title="">
-                </div>
-                <div class="image-caption">截图3</div>
-            </figure><br>开启允许访问文件网站（只有这样它才能检测到文件的更新）：<br><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/articles/plugin-livereload/20181012205603694.png" alt="截图4" title="">
-                </div>
-                <div class="image-caption">截图4</div>
-            </figure></p>
-<h2 id="第五步，谷歌浏览器开启此服务"><a href="#第五步，谷歌浏览器开启此服务" class="headerlink" title="第五步，谷歌浏览器开启此服务"></a>第五步，谷歌浏览器开启此服务</h2><p>在浏览器中打开你想要自动刷新的html文档，点击下图的这个图标：如果中间的小圆圈被填充则说明开启成功<br><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/articles/plugin-livereload/20181012205948469.png" alt="截图5" title="">
-                </div>
-                <div class="image-caption">截图5</div>
-            </figure><br>如果点击一下浏览器弹出下面的弹窗则说明Vscode中的 livereload 服务没开启，回头看一看第二步，重新开一下<br><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/articles/plugin-livereload/20181012210702410.png" alt="截图6" title="">
-                </div>
-                <div class="image-caption">截图6</div>
-            </figure></p>
-<h2 id="第六步，没有了"><a href="#第六步，没有了" class="headerlink" title="第六步，没有了"></a>第六步，没有了</h2><p>好了，差不多就这么多了， 用了这个插件，就再也不用在每次查看html编写效果时手动刷新页面了，感觉方便清爽多了，祝大家编程开心。</p>
 
         </div>
 
@@ -246,7 +190,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-11-15T14:31:20.326Z" itemprop="dateUpdated">2018-11-15 22:31:20</time>
+    最后更新时间：<time datetime="2018-11-15T14:34:41.665Z" itemprop="dateUpdated">2018-11-15 22:34:41</time>
 </span><br>
 
 
