@@ -2,9 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://eviler.top/articles/plugin-livereload/</loc>
+    
+    <lastmod>2018-11-15T14:31:20.326Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://eviler.top/articles/angular-case-commodityShow/</loc>
+    
+    <lastmod>2018-11-15T14:15:20.301Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://eviler.top/articles/html-format/</loc>
     
     <lastmod>2018-11-14T03:35:36.157Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://eviler.top/articles/angular-controller/</loc>
+    
+    <lastmod>2018-11-14T01:20:47.649Z</lastmod>
     
   </url>
   
@@ -23,23 +44,9 @@
   </url>
   
   <url>
-    <loc>https://eviler.top/articles/angular-case-commodityShow/</loc>
-    
-    <lastmod>2018-10-15T11:44:06.344Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://eviler.top/articles/angular-filter/</loc>
     
     <lastmod>2018-10-15T11:37:22.752Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://eviler.top/articles/angular-controller/</loc>
-    
-    <lastmod>2018-10-15T11:35:27.916Z</lastmod>
     
   </url>
   
