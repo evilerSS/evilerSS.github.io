@@ -31,10 +31,14 @@
 <meta property="og:site_name" content="独孤剑走偏锋">
 <meta property="og:description" content="html中的标签元素大体被分为三种不同的类型：块级元素、内联元素(又叫行内元素)和内联块级元素。事实上，我以前用的时候只是建立在对它们的初步了解之上，可能有时候的使用方法并不正确，这次我需要在实验的基础上去更加深入地认识它们，并且进行一些简单的对比，了解它们之间的差别与联系，从而能够正确地使用它们。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-21T15:36:25.310Z">
+<meta property="og:image" content="https://eviler.top/articles/html-element-type/block-element.png">
+<meta property="og:image" content="https://eviler.top/articles/html-element-type/inline-element.png">
+<meta property="og:image" content="https://eviler.top/articles/html-element-type/inline-block-element.png">
+<meta property="og:updated_time" content="2018-11-21T16:45:29.950Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Html元素类型：块级元素、行内元素（内联元素）和行内块级元素">
 <meta name="twitter:description" content="html中的标签元素大体被分为三种不同的类型：块级元素、内联元素(又叫行内元素)和内联块级元素。事实上，我以前用的时候只是建立在对它们的初步了解之上，可能有时候的使用方法并不正确，这次我需要在实验的基础上去更加深入地认识它们，并且进行一些简单的对比，了解它们之间的差别与联系，从而能够正确地使用它们。">
+<meta name="twitter:image" content="https://eviler.top/articles/html-element-type/block-element.png">
     
         <link rel="alternate" type="application/atom+xml" title="独孤剑走偏锋" href="/atom.xml">
     
@@ -166,7 +170,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#块级元素"><span class="post-toc-number">1.</span> <span class="post-toc-text">块级元素</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#特点"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">特点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常见的块状元素"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">常见的块状元素</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#内联元素（行内元素）"><span class="post-toc-number">2.</span> <span class="post-toc-text">内联元素（行内元素）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#内联块级元素（行内块级元素）"><span class="post-toc-number">3.</span> <span class="post-toc-text">内联块级元素（行内块级元素）</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#块级元素"><span class="post-toc-number">1.</span> <span class="post-toc-text">块级元素</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#特点"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">特点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常见的块状元素"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">常见的块状元素</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#内联元素（行内元素）"><span class="post-toc-number">2.</span> <span class="post-toc-text">内联元素（行内元素）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#特点-1"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">特点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常见的内联元素"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">常见的内联元素</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#内联块级元素（行内块级元素）"><span class="post-toc-number">3.</span> <span class="post-toc-text">内联块级元素（行内块级元素）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#特点-同时具有块级元素、内联元素的特点"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">特点(同时具有块级元素、内联元素的特点)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常见的内联块状元素"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">常见的内联块状元素</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#三种元素类型样式对比"><span class="post-toc-number">4.</span> <span class="post-toc-text">三种元素类型样式对比</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#代码"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">代码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#效果"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">效果</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">5.</span> <span class="post-toc-text">总结</span></a></li></ol>
         </nav>
     </aside>
 
@@ -196,9 +200,57 @@
 <h2 id="块级元素"><a href="#块级元素" class="headerlink" title="块级元素"></a>块级元素</h2><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ol>
 <li>每个元素都从新的一行开始，其后的元素另起一行，即使设置宽度为0，只要有高度，都会独占一行</li>
 <li>元素的高度、宽度、行高以及内外边距都可以设置</li>
-<li>元素如果不设置宽度，则是它本身符容器的100%（和父元素的宽度一致）<h3 id="常见的块状元素"><a href="#常见的块状元素" class="headerlink" title="常见的块状元素"></a>常见的块状元素</h3></li>
+<li>元素如果不设置宽度，则是它本身符容器的100%（和父元素的宽度一致）<h3 id="常见的块状元素"><a href="#常见的块状元素" class="headerlink" title="常见的块状元素"></a>常见的块状元素</h3>div、p、h1~h6、ul、ol、dl、li、dd、hr、blockquote、address、table、menu、pre，HTML5新增的header、section、aside、footer等<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/articles/html-element-type/block-element.png" alt="常见的块状元素" title="">
+                </div>
+                <div class="image-caption">常见的块状元素</div>
+            </figure>
+</li>
 </ol>
-<h2 id="内联元素（行内元素）"><a href="#内联元素（行内元素）" class="headerlink" title="内联元素（行内元素）"></a>内联元素（行内元素）</h2><h2 id="内联块级元素（行内块级元素）"><a href="#内联块级元素（行内块级元素）" class="headerlink" title="内联块级元素（行内块级元素）"></a>内联块级元素（行内块级元素）</h2>
+<h2 id="内联元素（行内元素）"><a href="#内联元素（行内元素）" class="headerlink" title="内联元素（行内元素）"></a>内联元素（行内元素）</h2><h3 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h3><ol>
+<li>和其他元素都在一行上；</li>
+<li>元素的高度、宽度及顶部和底部边距不可设置；</li>
+<li>元素的宽度就是它包含的文字或图片的宽度，不可改变。<h3 id="常见的内联元素"><a href="#常见的内联元素" class="headerlink" title="常见的内联元素"></a>常见的内联元素</h3>span、img、a、lable、input、abbr（缩写）、em（强调）、big、cite（引用）、i（斜体）、q（短引用）、textarea、select、small、sub、sup，strong、u（下划线）、button（默认display：inline-block）<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/articles/html-element-type/inline-element.png" alt="常见的内联元素" title="">
+                </div>
+                <div class="image-caption">常见的内联元素</div>
+            </figure>
+</li>
+</ol>
+<h2 id="内联块级元素（行内块级元素）"><a href="#内联块级元素（行内块级元素）" class="headerlink" title="内联块级元素（行内块级元素）"></a>内联块级元素（行内块级元素）</h2><h3 id="特点-同时具有块级元素、内联元素的特点"><a href="#特点-同时具有块级元素、内联元素的特点" class="headerlink" title="特点(同时具有块级元素、内联元素的特点)"></a>特点(同时具有块级元素、内联元素的特点)</h3><ol>
+<li>和其他元素都在一行上；</li>
+<li>元素的高度、宽度、行高以及内和外边距都可设置<h3 id="常见的内联块状元素"><a href="#常见的内联块状元素" class="headerlink" title="常见的内联块状元素"></a>常见的内联块状元素</h3>input、textarea、select、button<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/articles/html-element-type/inline-block-element.png" alt="常见的内联块级元素" title="">
+                </div>
+                <div class="image-caption">常见的内联块级元素</div>
+            </figure>
+</li>
+</ol>
+<h2 id="三种元素类型样式对比"><a href="#三种元素类型样式对比" class="headerlink" title="三种元素类型样式对比"></a>三种元素类型样式对比</h2><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code>&lt;hr&gt;
+&lt;div style=&quot;width:200px;height:100px;background:red&quot;&gt;我是第一个div，宽度200px，高度100px，背景色为红色&lt;/div&gt;
+&lt;div style=&quot;width:200px;height:100px;background:blue&quot;&gt;我是第二个div，宽度200px，高度100px，背景色为蓝色&lt;/div&gt;
+&lt;hr&gt;
+&lt;span style=&quot;width:200px;height:100px;background:red&quot;&gt;我是第一个span，宽度200px，高度100px，背景色为红色&lt;/span&gt;
+&lt;span style=&quot;width:200px;height:100px;background:blue&quot;&gt;我是第二个span，宽度200px，高度100px，背景色为蓝色&lt;/span&gt;
+&lt;hr&gt;
+&lt;button style=&quot;width:200px;height:100px;background:red&quot;&gt;我是第一个button，宽度200px，高度100px，背景色为红色&lt;/button&gt;
+&lt;button style=&quot;width:200px;height:100px;background:blue&quot;&gt;我是第二个button，宽度200px，高度100px，背景色为蓝色&lt;/button&gt;
+&lt;hr&gt;
+</code></pre><h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><hr><div style="width:200px;height:100px;background:red;">我是第一个div，宽度200px，高度100px，背景色为红色</div><div style="width:200px;height:100px;background:blue;">我是第二个div，宽度200px，高度100px，背景色为蓝色</div><hr><span style="width:200px;height:100px;background:red">我是第一个span，宽度200px，高度100px，背景色为红色</span><span style="width:200px;height:100px;background:blue">我是第二个span，宽度200px，高度100px，背景色为蓝色</span><hr><button style="width:200px;height:100px;background:red">我是第一个button，宽度200px，高度100px，背景色为红色</button><button style="width:200px;height:100px;background:blue">我是第二个button，宽度200px，高度100px，背景色为蓝色</button><hr></p>
+<p>实质上，虽然对span这个内联元素设置了宽度和高度，然而并没有起到效果。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>三种元素类型的特点决定了它的显示方式和一些属性的可设置性，我们再做网页开发的时候一定要用好它们，有时候如果元素标签本身的类型不能满足我们布局需要的时候，可以使用样式设置对它们进行类型修改变换。</p>
+<ol>
+<li>设置display:block；可以将元素转换块级元素；</li>
+<li>设置display:inline；可以将块状元素转换为内联元素；</li>
+<li>设置display:inline-block；可以将元素设置为内联块级元素。</li>
+</ol>
+
         </div>
 
         <blockquote class="post-copyright">
@@ -206,7 +258,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-11-21T15:36:25.310Z" itemprop="dateUpdated">2018-11-21 23:36:25</time>
+    最后更新时间：<time datetime="2018-11-21T16:45:29.950Z" itemprop="dateUpdated">2018-11-22 00:45:29</time>
 </span><br>
 
 
