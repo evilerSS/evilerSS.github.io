@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://eviler.top/articles/data-structure-algorithm-stack/</loc>
+    <lastmod>2019-01-19T10:38:51.913Z</lastmod>
+  </url>  <url>
     <loc>https://eviler.top/articles/javascript-regexp/</loc>
-    <lastmod>2018-11-28T05:51:26.257Z</lastmod>
+    <lastmod>2018-11-29T03:21:42.961Z</lastmod>
   </url>  <url>
     <loc>https://eviler.top/articles/html-element-type/</loc>
     <lastmod>2018-11-25T01:45:46.585Z</lastmod>
