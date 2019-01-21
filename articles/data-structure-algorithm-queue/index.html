@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="true/articles/data-structure-algorithm-queue/">
+    
+    
+    <title>使用js实现数据结构——队列 | 独孤剑走偏锋</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#000000">
+    
+    
+    <meta name="keywords" content="数据结构,javascript">
+    <meta name="keywords" content="数据结构,javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用js实现数据结构——队列">
+<meta property="og:url" content="https://eviler.top/articles/data-structure-algorithm-queue/index.html">
+<meta property="og:site_name" content="独孤剑走偏锋">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://eviler.top/articles/data-structure-algorithm-queue/enqueue.png">
+<meta property="og:image" content="https://eviler.top/articles/data-structure-algorithm-queue/dequeue.png">
+<meta property="og:updated_time" content="2019-01-21T02:47:35.276Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用js实现数据结构——队列">
+<meta name="twitter:image" content="https://eviler.top/articles/data-structure-algorithm-queue/enqueue.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="独孤剑走偏锋" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/eviler.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide"
+     >
+    <div class="inner flex-row-vertical">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+            <i class="icon icon-lg icon-close"></i>
+        </a>
+        <div class="brand-wrap" style="background-image:url(/img/headBack.jpg)">
+            <div class="brand">
+                <a href="/" class="avatar waves-effect waves-circle waves-light">
+                    <img src="/img/eviler.png">
+                </a>
+                <hgroup class="introduce">
+                    <h5 class="nickname">
+                        Eviler Zhao
+                    </h5>
+                    <a href="mailto:2922204320@qq.com" title="2922204320@qq.com" class="mail">2922204320@qq.com</a>
+                </hgroup>
+            </div>
+        </div>
+        <div class="scroll-wrap flex-col">
+            <ul class="nav">
+                
+                <li class="waves-block waves-effect">
+                    <a href="/"  >
+                        <i class="icon icon-lg icon-home"></i>
+                        主页
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="/archives"  >
+                        <i class="icon icon-lg icon-archives"></i>
+                        归档
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="/tags"  >
+                        <i class="icon icon-lg icon-tags"></i>
+                        标签
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="/categories"  >
+                        <i class="icon icon-lg icon-th-list"></i>
+                        分类
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="https://github.com/evilerSS" target="_blank"
+                         >
+                        <i class="icon icon-lg icon-github"></i>
+                        Github
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用js实现数据结构——队列</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">使用js实现数据结构——队列</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-01-21T02:16:56.000Z" itemprop="datePublished" class="page-time">
+  2019-01-21
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/数据结构与算法/">数据结构与算法</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是队列"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是队列</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#入队与出队图示"><span class="post-toc-number">2.</span> <span class="post-toc-text">入队与出队图示</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#入队"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">入队</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#出队"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">出队</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码实现"><span class="post-toc-number">3.</span> <span class="post-toc-text">代码实现</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#队列使用实例"><span class="post-toc-number">4.</span> <span class="post-toc-text">队列使用实例</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目一"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">题目一</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目二"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">题目二</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-data-structure-algorithm-queue"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">使用js实现数据结构——队列</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-01-21 10:16:56" datetime="2019-01-21T02:16:56.000Z"  itemprop="datePublished">2019-01-21</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/数据结构与算法/">数据结构与算法</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <!-- 使用jascript语言实现队列这个数据结构 -->
+<a id="more"></a>
+<h2 id="什么是队列"><a href="#什么是队列" class="headerlink" title="什么是队列"></a>什么是队列</h2><p>队列这个名词在我们日常生活中并不陌生，在很多场景下，我们都需要排队来进行活动，比如取食堂排队打饭，还有排队购票等。它们都有个有共同的特点就是先来先办理某种业务，后来的只能排在队尾等候。今天所要讲的队列是一种数据结构，是一种特殊的线性表，它只允许在队列头部（队头）进行删除操作，在队列的尾部（队尾）进行插入操作。</p>
+<h2 id="入队与出队图示"><a href="#入队与出队图示" class="headerlink" title="入队与出队图示"></a>入队与出队图示</h2><h3 id="入队"><a href="#入队" class="headerlink" title="入队"></a>入队</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/articles/data-structure-algorithm-queue/enqueue.png" alt="队列入队演示(图片来自互联网)" title="">
+                </div>
+                <div class="image-caption">队列入队演示(图片来自互联网)</div>
+            </figure>
+<h3 id="出队"><a href="#出队" class="headerlink" title="出队"></a>出队</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/articles/data-structure-algorithm-queue/dequeue.png" alt="队列出队演示(图片来自互联网)" title="">
+                </div>
+                <div class="image-caption">队列出队演示(图片来自互联网)</div>
+            </figure>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><pre><code>function Queue() {
+    var items = [];
+    //向队列尾部添加一个元素
+    this.enqueue = function (item) {
+        items.push(item);
+    }
+    //从队列头部移除一个元素
+    this.dequeue = function () {
+        return items.shift(); //js数组对象自带的函数
+    }
+    //返回队列头部元素
+    this.head = function () {
+        return items.length &gt; 0 ? items[0] : null;
+    }
+    //返回队列大小
+    this.size = function () {
+        return items.length;
+    }
+    //清空队列
+    this.clear = function () {
+        items = [];
+    }
+    //判断否否为空队列
+    this.isEmpty = function () {
+        return items.length == 0;
+    }
+}
+</code></pre><h2 id="队列使用实例"><a href="#队列使用实例" class="headerlink" title="队列使用实例"></a>队列使用实例</h2><h3 id="题目一"><a href="#题目一" class="headerlink" title="题目一"></a>题目一</h3><p><b>有一个数组a[100]存放0–99；要求每隔两个数删掉一个属，到末尾时循环至开头继续进行，求最后一个被删掉的数</b></p>
+<p>代码示例：</p>
+<pre><code>function del_ring(arr_list) {
+    var queue = new Queue();
+    for (var i = 0; i &lt; arr_list.length; i++) {//将数组里面的数都放入队列中
+        queue.enqueue(arr_list[i])
+    }
+    var index = 0;
+    while (queue.size() != 1) {
+        //弹出一个元素，判断是否需要删除
+        var item = queue.dequeue();
+        index += 1;
+        //每个两个就要删除一个，如果不是被删除的元素就加到队列尾部
+        if (index % 3 != 0) {
+            queue.enqueue(item);
+        }
+    }
+    return queue.head();
+}
+
+//测试代码
+var arr_list = [];//准备数组a
+for (var i = 0; i &lt; 100; i++) {
+    arr_list.push(i)
+}
+console.log(del_ring(arr_list)); //打印结果：90
+</code></pre><h3 id="题目二"><a href="#题目二" class="headerlink" title="题目二"></a>题目二</h3><p><b>使用队列计算斐波那契数列的第n项</b></p>
+<p>代码示例：</p>
+<pre><code>function fibonacci(n) {
+    var queue = new Queue();
+    queue.enqueue(1);
+    queue.enqueue(1);
+    for (var i = 1; i &lt;= n - 2; i++) {
+        var head_num = queue.dequeue();
+        queue.enqueue(head_num + queue.head());
+    }
+    queue.dequeue();
+    return queue.head();
+}
+console.log(fibonacci(9)); //打印结果：34
+</code></pre>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-01-21T02:47:35.276Z" itemprop="dateUpdated">2019-01-21 10:47:35</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://eviler.top">
+            <img src="/img/eviler.png" alt="Eviler Zhao">
+            Eviler Zhao
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://eviler.top/articles/data-structure-algorithm-queue/&title=《使用js实现数据结构——队列》 — 独孤剑走偏锋&pic=https://eviler.top/img/eviler.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://eviler.top/articles/data-structure-algorithm-queue/&title=《使用js实现数据结构——队列》 — 独孤剑走偏锋&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://eviler.top/articles/data-structure-algorithm-queue/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用js实现数据结构——队列》 — 独孤剑走偏锋&url=https://eviler.top/articles/data-structure-algorithm-queue/&via=https://eviler.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://eviler.top/articles/data-structure-algorithm-queue/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/articles/data-structure-algorithm-stack/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">使用js实现的栈以及使用栈实现的几个简单算法</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Eviler Zhao &copy; 2015 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://eviler.top/articles/data-structure-algorithm-queue/&title=《使用js实现数据结构——队列》 — 独孤剑走偏锋&pic=https://eviler.top/img/eviler.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://eviler.top/articles/data-structure-algorithm-queue/&title=《使用js实现数据结构——队列》 — 独孤剑走偏锋&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://eviler.top/articles/data-structure-algorithm-queue/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用js实现数据结构——队列》 — 独孤剑走偏锋&url=https://eviler.top/articles/data-structure-algorithm-queue/&via=https://eviler.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://eviler.top/articles/data-structure-algorithm-queue/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLUlEQVR42u3aQXKDMAwF0Nz/0nTbmQb4skxnsB+rTELBzwtVlvT5xNdxciW//r4n+ebv99MuDAyM1zKOy2vsnvyvzu6sPgEDA2MHxlkESz5fB8qzxeWh/HptGBgYGNV7+svFwMDAmBVwo3Qt5iV3YmBgYHRStOo19/CMgYGxAyOvuv//50f6GxgYGK9idALlrCVWg+yXVWFgYCzNyANc0rDMD65J27K6HgwMjJ0ZY0fHfFnJ1kTvxcDAWJQxVsyqvmZuyvjlyRgYGBswOi9OUsZkm1obioGBsTRj7ICaH0SrmJtj6nVwx8DAWJQxVhRLCm1zk78bNgYGxtKMTslsLIHLA3RyYC5XEzEwMF7OSJqRUfErWHoCSzAYGBg7MPJlRTsRp31j7YdozAIDA2NRxnOhc9Z/g5tvMDAwNmD0xynyxeUhONncQicWAwNjCUZOqjY1nxg1O50ZwcDAWJox9uhk2Ou5QywGBsYOjKRAVh35mjYkUTzWYmBgrM2ojqsm4xRjy6oOvEa1QwwMjIUY/RQtWWK1GFcI2RgYGBswqqX5sdJY/q5qyMbAwFiVcRSvPBQONiOLLU8MDIwdGP3GZD+JrLYTOu1VDAyM9zLyINupw489OdkaDAyMfRhj6V1nwKJziC00BjAwMLZkjB0yk8Casyf0VzEwMJZm9JudnWbAaeKIgYGxAaPaDKiOgiUJZVKMm3AWx8DAeCGjenSclZXloxvTGpkYGBjvY/wA6lGTYTrq8IMAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '君于何处?待君归来~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '君归矣，善哉！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
