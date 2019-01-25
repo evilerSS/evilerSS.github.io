@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://eviler.top/articles/data-structure-algorithm-chain/</loc>
+    <lastmod>2019-01-25T11:29:40.688Z</lastmod>
+  </url>  <url>
     <loc>https://eviler.top/articles/data-structure-algorithm-queue/</loc>
-    <lastmod>2019-01-21T02:47:35.276Z</lastmod>
+    <lastmod>2019-01-25T11:11:08.106Z</lastmod>
   </url>  <url>
     <loc>https://eviler.top/articles/data-structure-algorithm-stack/</loc>
-    <lastmod>2019-01-21T02:15:57.913Z</lastmod>
+    <lastmod>2019-01-25T11:01:56.595Z</lastmod>
   </url>  <url>
     <loc>https://eviler.top/articles/javascript-regexp/</loc>
     <lastmod>2018-11-29T03:21:42.961Z</lastmod>
