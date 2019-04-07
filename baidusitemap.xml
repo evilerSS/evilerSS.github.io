@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://eviler.top/articles/javascript-data-type/</loc>
+    <lastmod>2019-04-07T12:01:53.120Z</lastmod>
+  </url>  <url>
+    <loc>https://eviler.top/articles/javascript-regexp/</loc>
+    <lastmod>2019-04-07T02:07:04.172Z</lastmod>
+  </url>  <url>
+    <loc>https://eviler.top/articles/angular-case-commodityShow/</loc>
+    <lastmod>2019-04-07T02:06:42.102Z</lastmod>
+  </url>  <url>
     <loc>https://eviler.top/articles/data-structure-algorithm-chain/</loc>
     <lastmod>2019-01-25T11:29:40.688Z</lastmod>
   </url>  <url>
@@ -10,9 +19,6 @@
     <loc>https://eviler.top/articles/data-structure-algorithm-stack/</loc>
     <lastmod>2019-01-25T11:01:56.595Z</lastmod>
   </url>  <url>
-    <loc>https://eviler.top/articles/javascript-regexp/</loc>
-    <lastmod>2018-11-29T03:21:42.961Z</lastmod>
-  </url>  <url>
     <loc>https://eviler.top/articles/html-element-type/</loc>
     <lastmod>2018-11-25T01:45:46.585Z</lastmod>
   </url>  <url>
@@ -21,9 +27,6 @@
   </url>  <url>
     <loc>https://eviler.top/articles/plugin-livereload/</loc>
     <lastmod>2018-11-15T14:34:53.385Z</lastmod>
-  </url>  <url>
-    <loc>https://eviler.top/articles/angular-case-commodityShow/</loc>
-    <lastmod>2018-11-15T14:15:20.301Z</lastmod>
   </url>  <url>
     <loc>https://eviler.top/articles/html-format/</loc>
     <lastmod>2018-11-14T03:35:36.157Z</lastmod>
