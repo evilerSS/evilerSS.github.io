@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="true/articles/javascript-operator/">
+    
+    
+    <title>Javascript操作符 | 独孤剑走偏锋</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#000000">
+    
+    
+    <meta name="keywords" content="javascript">
+    <meta name="description" content="ECMAScript描述了一组用于操作数据值的操作符，包括算术操作符（如加号和减号）、位操作符、关系操作符和相等操作符。它们能够使用很多值，例如字符串、数字值、布尔值、甚至对象。不过，在应用于对象时，相应的操作符通常都会调用对象的valueOf()和（或）toString()方法，以便取得可以操作的值。">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript操作符">
+<meta property="og:url" content="https://eviler.top/articles/javascript-operator/index.html">
+<meta property="og:site_name" content="独孤剑走偏锋">
+<meta property="og:description" content="ECMAScript描述了一组用于操作数据值的操作符，包括算术操作符（如加号和减号）、位操作符、关系操作符和相等操作符。它们能够使用很多值，例如字符串、数字值、布尔值、甚至对象。不过，在应用于对象时，相应的操作符通常都会调用对象的valueOf()和（或）toString()方法，以便取得可以操作的值。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-07T13:27:31.214Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript操作符">
+<meta name="twitter:description" content="ECMAScript描述了一组用于操作数据值的操作符，包括算术操作符（如加号和减号）、位操作符、关系操作符和相等操作符。它们能够使用很多值，例如字符串、数字值、布尔值、甚至对象。不过，在应用于对象时，相应的操作符通常都会调用对象的valueOf()和（或）toString()方法，以便取得可以操作的值。">
+    
+        <link rel="alternate" type="application/atom+xml" title="独孤剑走偏锋" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/eviler.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide"
+     >
+    <div class="inner flex-row-vertical">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+            <i class="icon icon-lg icon-close"></i>
+        </a>
+        <div class="brand-wrap" style="background-image:url(/img/headBack.jpg)">
+            <div class="brand">
+                <a href="/" class="avatar waves-effect waves-circle waves-light">
+                    <img src="/img/eviler.png">
+                </a>
+                <hgroup class="introduce">
+                    <h5 class="nickname">
+                        Eviler Zhao
+                    </h5>
+                    <a href="mailto:2922204320@qq.com" title="2922204320@qq.com" class="mail">2922204320@qq.com</a>
+                </hgroup>
+            </div>
+        </div>
+        <div class="scroll-wrap flex-col">
+            <ul class="nav">
+                
+                <li class="waves-block waves-effect">
+                    <a href="/"  >
+                        <i class="icon icon-lg icon-home"></i>
+                        主页
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="/archives"  >
+                        <i class="icon icon-lg icon-archives"></i>
+                        归档
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="/tags"  >
+                        <i class="icon icon-lg icon-tags"></i>
+                        标签
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="/categories"  >
+                        <i class="icon icon-lg icon-th-list"></i>
+                        分类
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="https://github.com/evilerSS" target="_blank"
+                         >
+                        <i class="icon icon-lg icon-github"></i>
+                        Github
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Javascript操作符</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Javascript操作符</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-07T12:12:18.000Z" itemprop="datePublished" class="page-time">
+  2019-04-07
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一元操作符"><span class="post-toc-number">1.</span> <span class="post-toc-text">一元操作符</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#递增-和递减操作符-–"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">递增(++)和递减操作符(–)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一元加-和减-操作符"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">一元加(+)和减(-)操作符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#位操作符"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">位操作符</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#按位非-NOT"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">按位非(NOT)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#按位与-AND"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">按位与(AND)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#按位或-OR"><span class="post-toc-number">1.3.3.</span> <span class="post-toc-text">按位或(OR)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#按位异或-XOR"><span class="post-toc-number">1.3.4.</span> <span class="post-toc-text">按位异或(XOR)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#左移"><span class="post-toc-number">1.3.5.</span> <span class="post-toc-text">左移</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#右移"><span class="post-toc-number">1.3.6.</span> <span class="post-toc-text">右移</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-javascript-operator"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Javascript操作符</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-07 20:12:18" datetime="2019-04-07T12:12:18.000Z"  itemprop="datePublished">2019-04-07</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>ECMAScript描述了一组用于操作数据值的操作符，包括算术操作符（如加号和减号）、位操作符、关系操作符和相等操作符。它们能够使用很多值，例如字符串、数字值、布尔值、甚至对象。不过，在应用于对象时，相应的操作符通常都会调用对象的valueOf()和（或）toString()方法，以便取得可以操作的值。<br><a id="more"></a></p>
+<h2 id="一元操作符"><a href="#一元操作符" class="headerlink" title="一元操作符"></a>一元操作符</h2><h3 id="递增-和递减操作符-–"><a href="#递增-和递减操作符-–" class="headerlink" title="递增(++)和递减操作符(–)"></a>递增(++)和递减操作符(–)</h3><p>递增和递减操作符遵循下列规则</p>
+<ol>
+<li>应用于包含有效数字字符的字符串，先将其转换为数字值，再执行加减1的操作。字符串变量变成数值变量。</li>
+<li>应用于布尔值时，true转换为1，false转换为0，再执行加减1的操作。布尔值变成数值变量。</li>
+<li>应用于浮点数值时，执行加减1的操作</li>
+<li>应用于一个不包含有效数字字符的字符串时，将变量的值设置为NaN。字符串变量变成数值变量。</li>
+<li>应用于对象时，先调用对象的valueOf()方法以取得一个可供操作的值。然后对改制应用签署规则。如果结果是NaN，则再调用toString()方法后再应用签署规则。对象变量变成数值变量。</li>
+<li><h3 id="一元加-和减-操作符"><a href="#一元加-和减-操作符" class="headerlink" title="一元加(+)和减(-)操作符"></a>一元加(+)和减(-)操作符</h3>一元加操作符放在数值前面，对数值不会产生任何影响。不过，在对非数值应用一元加操作符时，该操作符会像Number()转型函数（可查看上一篇文章）一样对这个值执行转换。<br>一元减操作符主要用于表示负数。将一元操作符应用于数值时，该数值会变成负数。而当应用于非数值时，一元减操作符遵循与一元加操作符相同的规则，最后再将得到的数值转换为负数。</li>
+</ol>
+<h3 id="位操作符"><a href="#位操作符" class="headerlink" title="位操作符"></a>位操作符</h3><p>位操作符用于在最基本的层次上，即按内存中表示数值的位来操作数值。ECMAScript中的所有数值都以IEEE-754 64位格式存储，但未操作并不直接操作64位的值。而是先将64位的值转换为32位的整数，然后执行操作，最后再将结果转换回64位。<br>对于有符号的整数，32位中的前31位用于表示整数的值。第32位（符号位）用于表示数值的符号：0表示正数，1表示负数。负数使用二进制存储，但使用的格式是二进制补码。<br>计算一个数值的二进制补码需要经过三个步骤：</p>
+<ol>
+<li>求这个数值绝对值的二进制码（例如，要求-18的二进制补码，先求18的二进制码）</li>
+<li>求二进制反码，即将0替换为1，将1替换为0</li>
+<li><p>得到的二进制反码加1</p>
+<h4 id="按位非-NOT"><a href="#按位非-NOT" class="headerlink" title="按位非(NOT)"></a>按位非(NOT)</h4><p>用一个波浪线(~)表示，操作数只有一个，执行按位非得结果就是返回数值的反码。</p>
+<pre><code>var num1 = 25;      //二进制00011001
+var num2 = ~num1;   //二进制11100110
+</code></pre><h4 id="按位与-AND"><a href="#按位与-AND" class="headerlink" title="按位与(AND)"></a>按位与(AND)</h4><p>按位与用和字号(&amp;)表示，操作数有两个，从本质上将，按位与就是将两个数值的每一位对齐，对相同位置上的两个数执行AND操作</p>
+<pre><code>var result = 25 &amp; 3; //11001 &amp; 00011 = 00001
+console.log(result); //1
+</code></pre><h4 id="按位或-OR"><a href="#按位或-OR" class="headerlink" title="按位或(OR)"></a>按位或(OR)</h4><p>按位与用和竖线符号(|)表示，操作数有两个，从本质上将，按位与就是将两个数值的每一位对齐，对相同位置上的两个数执行OR操作</p>
+<pre><code>var result = 25 | 3; //11001 | 00011 = 11011
+console.log(result); //27
+</code></pre><h4 id="按位异或-XOR"><a href="#按位异或-XOR" class="headerlink" title="按位异或(XOR)"></a>按位异或(XOR)</h4><p>按位与用和竖线符号(^)表示，操作数有两个，从本质上将，按位与就是将两个数值的每一位对齐，对相同位置上的两个数执行XOR操作(相同则为0，不相同则为0)</p>
+<pre><code>var result = 25 | 3; //11001 ^ 00011 = 11010
+console.log(result); //26
+</code></pre><h4 id="左移"><a href="#左移" class="headerlink" title="左移"></a>左移</h4><p>左移操作由两个小于号(&lt;&lt;)表示</p>
+<pre><code>var result = 2 &lt;&lt; 3; //00010 &lt;&lt; 3 = 10000
+console.log(result); //16
+</code></pre><h4 id="右移"><a href="#右移" class="headerlink" title="右移"></a>右移</h4><p>右移操作由两个大于号(&gt;&gt;)表示</p>
+<pre><code>var result = 16 &gt;&gt; 3; //10000 &gt;&gt; 3 = 00010
+console.log(result); //2
+var result2 = 16 &gt;&gt; 5; //10000 &gt;&gt; 3 = 00010
+console.log(result2); //0
+</code></pre></li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-04-07T13:27:31.214Z" itemprop="dateUpdated">2019-04-07 21:27:31</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://eviler.top">
+            <img src="/img/eviler.png" alt="Eviler Zhao">
+            Eviler Zhao
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://eviler.top/articles/javascript-operator/&title=《Javascript操作符》 — 独孤剑走偏锋&pic=https://eviler.top/img/eviler.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://eviler.top/articles/javascript-operator/&title=《Javascript操作符》 — 独孤剑走偏锋&source=ECMAScript描述了一组用于操作数据值的操作符，包括算术操作符（如加号和减号）、位操作符、关系操作符和相等操作符。它们能够使用很多值，例如字符串、数..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://eviler.top/articles/javascript-operator/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Javascript操作符》 — 独孤剑走偏锋&url=https://eviler.top/articles/javascript-operator/&via=https://eviler.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://eviler.top/articles/javascript-operator/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/articles/javascript-data-type/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Javascript数据类型</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Eviler Zhao &copy; 2015 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://eviler.top/articles/javascript-operator/&title=《Javascript操作符》 — 独孤剑走偏锋&pic=https://eviler.top/img/eviler.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://eviler.top/articles/javascript-operator/&title=《Javascript操作符》 — 独孤剑走偏锋&source=ECMAScript描述了一组用于操作数据值的操作符，包括算术操作符（如加号和减号）、位操作符、关系操作符和相等操作符。它们能够使用很多值，例如字符串、数..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://eviler.top/articles/javascript-operator/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Javascript操作符》 — 独孤剑走偏锋&url=https://eviler.top/articles/javascript-operator/&via=https://eviler.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://eviler.top/articles/javascript-operator/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACL0lEQVR42u3aS5KDMAwFwNz/0sw2i0CeJDJV2M1qihDHzUKjj1+v+Drervc7yZPXzyffve3CwMB4LOO4vK6fSUhnK1zvId8bBgbGPoxkE3lgvQ6d974gDAwMjOsfThLHZIsYGBgYv2BMeNUVMDAwMPIidtJo6xWoP6nFMTAwHsjIu+7///dP5hsYGBiPYhzFa9Lu792JdoWBgbE0Y3IMYjLC7LXYvqShGBgYGzDyRfPAWi16rwN3s92GgYHxcEayRNJQyzcxD9kfPsXAwNiGUU3peoczJuVu1AvEwMDYgHFXgpiPJHuv+EPXEAMDY1FGNbGbHIDIX01+v5C9YmBgPJwxSd3yoWOVVC2DMTAw1mZMCtokcUyadL1/AxgYGDsw8iL2rvK1miY2T4tgYGAsxEhabJMWf1Q9twrpqIjFwMBYgpGXkdVQm7fbJqOC0zMjGBgYCzGqRyWqQTN/NdXQjIGBsQ+jXCgOjmVMhg1ffhcDA2NpRlID5m2yfKO9FQrDSwwMjA0YvUStmZO2DnN8WA0DA2MDxqTF3zsulm8xSjcxMDC2ZFRHAnlIrR5gjQYJGBgYizKO4jVP8nJSIQRjYGAszagWn9Xmfl6O5olm8ioxMDDWY+SlZhUQZaat4xqngwEMDIylGXngq36reicfLZzONzAwMDCK48kEcAMYAwMDI1gub9hNguyXESYGBsbSjHn4mzTx84EEBgbGnoxJyMubZXcNQUeDTAwMjOcx/gDUdyLg9w5GUAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '君于何处?待君归来~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '君归矣，善哉！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
