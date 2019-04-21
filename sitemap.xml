@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://eviler.top/articles/data-structure-algorithm-tree/</loc>
+    
+    <lastmod>2019-04-21T15:38:02.123Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://eviler.top/articles/data-structure-algorithm-chain/</loc>
+    
+    <lastmod>2019-04-15T00:33:54.507Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://eviler.top/articles/javascript-operator/</loc>
     
     <lastmod>2019-04-09T02:35:42.392Z</lastmod>
@@ -11,7 +25,7 @@
   <url>
     <loc>https://eviler.top/articles/javascript-data-type/</loc>
     
-    <lastmod>2019-04-07T12:31:28.126Z</lastmod>
+    <lastmod>2019-04-09T00:54:42.395Z</lastmod>
     
   </url>
   
@@ -26,13 +40,6 @@
     <loc>https://eviler.top/articles/angular-case-commodityShow/</loc>
     
     <lastmod>2019-04-07T02:06:42.102Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://eviler.top/articles/data-structure-algorithm-chain/</loc>
-    
-    <lastmod>2019-01-25T11:29:40.688Z</lastmod>
     
   </url>
   
