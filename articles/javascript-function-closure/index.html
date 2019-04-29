@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="true/articles/javascript-function-closure/">
+    
+    
+    <title>javascript函数表达式之闭包 | 独孤剑走偏锋</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#000000">
+    
+    
+    <meta name="keywords" content="javascript">
+    <meta name="description" content="匿名函数和闭包式两个不同的概念。之前我也是对闭包的理解和应用一知半解，现在再学习一次，彻底搞懂闭包的概念。">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript函数表达式之闭包">
+<meta property="og:url" content="https://eviler.top/articles/javascript-function-closure/index.html">
+<meta property="og:site_name" content="独孤剑走偏锋">
+<meta property="og:description" content="匿名函数和闭包式两个不同的概念。之前我也是对闭包的理解和应用一知半解，现在再学习一次，彻底搞懂闭包的概念。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://eviler.top/articles/javascript-function-closure/compare-context.png">
+<meta property="og:image" content="https://eviler.top/articles/javascript-function-closure/scope.png">
+<meta property="og:updated_time" content="2019-04-29T15:17:22.452Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript函数表达式之闭包">
+<meta name="twitter:description" content="匿名函数和闭包式两个不同的概念。之前我也是对闭包的理解和应用一知半解，现在再学习一次，彻底搞懂闭包的概念。">
+<meta name="twitter:image" content="https://eviler.top/articles/javascript-function-closure/compare-context.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="独孤剑走偏锋" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/eviler.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide"
+     >
+    <div class="inner flex-row-vertical">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+            <i class="icon icon-lg icon-close"></i>
+        </a>
+        <div class="brand-wrap" style="background-image:url(/img/headBack.jpg)">
+            <div class="brand">
+                <a href="/" class="avatar waves-effect waves-circle waves-light">
+                    <img src="/img/eviler.png">
+                </a>
+                <hgroup class="introduce">
+                    <h5 class="nickname">
+                        Eviler Zhao
+                    </h5>
+                    <a href="mailto:eviler_zhao@163.com" title="eviler_zhao@163.com" class="mail">eviler_zhao@163.com</a>
+                </hgroup>
+            </div>
+        </div>
+        <div class="scroll-wrap flex-col">
+            <ul class="nav">
+                
+                <li class="waves-block waves-effect">
+                    <a href="/"  >
+                        <i class="icon icon-lg icon-home"></i>
+                        主页
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="/archives"  >
+                        <i class="icon icon-lg icon-archives"></i>
+                        归档
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="/tags"  >
+                        <i class="icon icon-lg icon-tags"></i>
+                        标签
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="/categories"  >
+                        <i class="icon icon-lg icon-th-list"></i>
+                        分类
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="https://github.com/evilerSS" target="_blank"
+                         >
+                        <i class="icon icon-lg icon-github"></i>
+                        Github
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">javascript函数表达式之闭包</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">javascript函数表达式之闭包</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-29T13:37:02.000Z" itemprop="datePublished" class="page-time">
+  2019-04-29
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#闭包的概念"><span class="post-toc-number">1.</span> <span class="post-toc-text">闭包的概念</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#作用域链"><span class="post-toc-number">2.</span> <span class="post-toc-text">作用域链</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-javascript-function-closure"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">javascript函数表达式之闭包</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-29 21:37:02" datetime="2019-04-29T13:37:02.000Z"  itemprop="datePublished">2019-04-29</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>匿名函数和闭包式两个不同的概念。之前我也是对闭包的理解和应用一知半解，现在再学习一次，彻底搞懂闭包的概念。<br><a id="more"></a></p>
+<h1 id="闭包的概念"><a href="#闭包的概念" class="headerlink" title="闭包的概念"></a>闭包的概念</h1><p>在《JavaScript高级程序设计》这本书中的解释是：闭包是指有权访问另一个函数作用域中的变量的函数。<br>创建闭包的常见方式，就是在一个函数内部创建另一个函数。如下所示：</p>
+<pre><code>function createComparisonFunction(propertyName) {
+    return function (object1, object2) { //匿名函数1
+        var value1 = object1[propertyName]; //语句1
+        var value2 = object2[propertyName]; //语句2
+
+        if (value1 &lt; value2) {
+            return -1;
+        } else if (value1 &gt; value2) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+}
+</code></pre><p>注意匿名函数1里面的语句1和语句2，这两行代码访问了外部函数中的变量propertyName。即使这个内部函数被返回了，而且是在其他地方被调用了，但它仍然可以访问变量propertyName。之所以还能够访问这个变量，是因为内部函数的作用域链中包含的作用域链中包含createComparisonFunction()的作用域。</p>
+<h1 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h1><p>当某个函数第一次被调用时，会创建一个执行环境及相应的作用域，并把作用域链赋值给一个特殊的内部属性（即[[Scope]]）。然后，使用this、arguments和其他命名参数的值来初始化函数的活动对象。但在作用域链中，外部函数的活动对象始终处于第二位。外部函数的外部函数的活动对象处于第三位，……直至作为作用域终点的全局执行环境。<br>在函数执行过程中，为读取和写入变量的值，就需要在作用域中查找变量。看下面的例子：</p>
+<pre><code>function compare(value1, value2) { 
+    if (value1 &lt; value2) {
+        return -1;
+    } else if (value1 &gt; value2) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+var result = compare(5, 10);//-1
+</code></pre><p>以上代码先定义了compare()函数，然后又在全局作用域中调用了它。当第一次调用compare()时，会创建一个包含this、arguments、value1、value2的活动对象。全局执行环境的变量对象(包含this、reault和compare)在compare()执行环境的作用域链中则处于第二位。下图为上述关系的copmare()函数执行时的作用域链：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/articles/javascript-function-closure/compare-context.png" alt="copmare()函数执行时的作用域链" title="">
+                </div>
+                <div class="image-caption">copmare()函数执行时的作用域链</div>
+            </figure><br>后台的每个执行环境都有一个表示变量的对象—-变量对象。全局环境的变量对象始终存在，而像compare()函数这样的局部环境的变量对象，则只在函数执行的过程中存在。在创建copmare()函数时，会创建一个预先包含变量对象的作用域链，这个作用域被保存在内部的[[Scope]]属性中。当调用compare()函数时，会为函数创建一个执行环境，然后通过复制函数的[[Scope]]属性中的对象构建起执行环境的作用域链。此后，又一个活动对象（在此作为变量对象使用）被创建并推入执行环境作用域链的前端。对于本例中的compare()函数的执行环境而言，其作用域链中包含两个变量对象：本地活动对象和全局变量对象。显然，作用域本质上是一个指向变量对象的指针列表，它只引用但不实际包含变量对象。<br>无论什么时候再函数中访问一个变量时，就会从作用域中搜索具有相应名字的变量。一般来讲，当函数执行完毕后，局部活动对象就会被销毁，内存中仅保存全局作用域（全局执行环境的变量对象）。但是闭包的情况又有所不同。<br>在另一个函数内部定义的函数会将包含函数（即外部函数）的活动对象添加到它的作用域中。因此，在createComparisonFunction()内部定义的匿名函数1的作用域中，实际上会将外部函数createComparisonFunction()的活动对象。当执行下列代码时：</p>
+<pre><code>var compare = createComparisonFunction(&quot;name&quot;);
+var result = compare({name:&quot;Nicholas&quot;},{name:&quot;Greg&quot;})
+</code></pre><p>createComparisonFunction()函数与内部匿名函数1的作用域链如下图所示：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/articles/javascript-function-closure/scope.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>在匿名函数1从createComparisonFunction()中被返回后，它的作用域被初始化为包含createComparisonFunction()函数的活动对象和全局变量对象。这样，匿名函数就可以访问在createComparisonFunction()中定义的所有变量。更为重要的时，createComparisonFunction()函数在执行完毕后，其活动对象也不会被销毁，因为匿名函数1的作用域链仍然在引用这个活动对象。换句话说，当createComparisonFunction()函数返回后，其执行环境的作用域链会被销毁，但它的活动对象仍然会保留在内存中；直到匿名函数被销毁后，createComparisonFunction()的活动对象才会被销毁。<br><!-- # 闭包与变量
+作用域的这种配置机制引出了一个值得注意的副作用，即闭包只能取得包含函数中任何变量的最后一个值。闭包所保存的是整个变量对象，而不是某个特殊的变量 --></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-04-29T15:17:22.452Z" itemprop="dateUpdated">2019-04-29 23:17:22</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://eviler.top">
+            <img src="/img/eviler.png" alt="Eviler Zhao">
+            Eviler Zhao
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://eviler.top/articles/javascript-function-closure/&title=《javascript函数表达式之闭包》 — 独孤剑走偏锋&pic=https://eviler.top/img/eviler.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://eviler.top/articles/javascript-function-closure/&title=《javascript函数表达式之闭包》 — 独孤剑走偏锋&source=匿名函数和闭包式两个不同的概念。之前我也是对闭包的理解和应用一知半解，现在再学习一次，彻底搞懂闭包的概念。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://eviler.top/articles/javascript-function-closure/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《javascript函数表达式之闭包》 — 独孤剑走偏锋&url=https://eviler.top/articles/javascript-function-closure/&via=https://eviler.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://eviler.top/articles/javascript-function-closure/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/articles/javascript-object-oriented-programming/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">面向对象的程序设计</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Eviler Zhao &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://eviler.top/articles/javascript-function-closure/&title=《javascript函数表达式之闭包》 — 独孤剑走偏锋&pic=https://eviler.top/img/eviler.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://eviler.top/articles/javascript-function-closure/&title=《javascript函数表达式之闭包》 — 独孤剑走偏锋&source=匿名函数和闭包式两个不同的概念。之前我也是对闭包的理解和应用一知半解，现在再学习一次，彻底搞懂闭包的概念。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://eviler.top/articles/javascript-function-closure/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《javascript函数表达式之闭包》 — 独孤剑走偏锋&url=https://eviler.top/articles/javascript-function-closure/&via=https://eviler.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://eviler.top/articles/javascript-function-closure/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACNUlEQVR42u3aSY7DMAwFUd//0u5tL1pOfTJuQGJpFWSw9RyA4KDrwuterOdvrt75/f7zb7+8ZMiQsS3jflyr76y20r8y+fSP+8qQIWMAY7UJ/jrd+vOv+N5kyJAhIw2sPO2rPSYZMmTISAMuL1/5XWTIkCGjU8R22mq1wviVWlyGDBkbMnjX/f9fvzLfkCFDxlaMO1xpukaGl3d7yZAh42wGD3DB5cICNR2LLh+QDBkyDmWQQrRzSKLTniOhPLiQDBkytmV0RpV8E/1hQ/CfyJAh4zhGP1FLAy4ZHvCHgmpiGTJkbM7gt0mbazzpTLM71G6TIUPGQYz0iEN8VCvs/PFwHOSbMmTIOJoRXOi1lBHtU4YMGWMYQS5ZCtC1MI1CsAwZMgYwaqNEcgMeXtGQ8vm0iAwZMg5l1ApLcjgsPTSWHrb4Qn0sQ4aMTRg8XNZK1rdD8DLDlSFDxkEMXkbWUkYedvnxDhkyZExjdJpinUFmjRcctpAhQ8ZBDN50S0eSvDXGr/AhKMuQIWMAo9/u748kebr5IcOVIUPGAEatAcdDNgm4cSiXIUPGGEYadnmzjBfMxdJXhgwZhzLucHUCK3kc6chThgwZExj942K8uZYieYIoQ4aMCYzOAIAnhZ1wjAalMmTIGMCoBT4Cjlv85CjY82BAhgwZMnDoTNtn/BFc/DyaDBkyxjPSLfaDbDDClCFDxnGMTrOeJ4t8W7x5J0OGjAmMWunYKV9JwO00+GTIkHEQ4wcXuYmH7803oQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '君于何处?待君归来~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '君归矣，善哉！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
