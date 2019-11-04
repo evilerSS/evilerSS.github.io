@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="true/articles/web-security-browser/">
+    
+    
+    <title>Web安全——浏览器安全 | 独孤剑走偏锋</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#000000">
+    
+    
+    <meta name="keywords" content="Web安全,浏览器">
+    <meta name="description" content="浏览器发展大到今天已经成为绝大多数用户使用得联网工具，浏览器市场的竞争也日趋白热化，浏览器安全也在这种环境中被越来越多人重视，许多浏览器厂商也在这方面下足了功夫。">
+<meta name="keywords" content="Web安全,浏览器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web安全——浏览器安全">
+<meta property="og:url" content="https://eviler.top/articles/web-security-browser/index.html">
+<meta property="og:site_name" content="独孤剑走偏锋">
+<meta property="og:description" content="浏览器发展大到今天已经成为绝大多数用户使用得联网工具，浏览器市场的竞争也日趋白热化，浏览器安全也在这种环境中被越来越多人重视，许多浏览器厂商也在这方面下足了功夫。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-04T05:24:27.221Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web安全——浏览器安全">
+<meta name="twitter:description" content="浏览器发展大到今天已经成为绝大多数用户使用得联网工具，浏览器市场的竞争也日趋白热化，浏览器安全也在这种环境中被越来越多人重视，许多浏览器厂商也在这方面下足了功夫。">
+    
+        <link rel="alternate" type="application/atom+xml" title="独孤剑走偏锋" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/eviler.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide"
+     >
+    <div class="inner flex-row-vertical">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+            <i class="icon icon-lg icon-close"></i>
+        </a>
+        <div class="brand-wrap" style="background-image:url(/img/headBack.jpg)">
+            <div class="brand">
+                <a href="/" class="avatar waves-effect waves-circle waves-light">
+                    <img src="/img/eviler.png">
+                </a>
+                <hgroup class="introduce">
+                    <h5 class="nickname">
+                        Eviler Zhao
+                    </h5>
+                    <a href="mailto:eviler_zhao@163.com" title="eviler_zhao@163.com" class="mail">eviler_zhao@163.com</a>
+                </hgroup>
+            </div>
+        </div>
+        <div class="scroll-wrap flex-col">
+            <ul class="nav">
+                
+                <li class="waves-block waves-effect">
+                    <a href="/"  >
+                        <i class="icon icon-lg icon-home"></i>
+                        主页
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="/archives"  >
+                        <i class="icon icon-lg icon-archives"></i>
+                        归档
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="/tags"  >
+                        <i class="icon icon-lg icon-tags"></i>
+                        标签
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="/categories"  >
+                        <i class="icon icon-lg icon-th-list"></i>
+                        分类
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="https://github.com/evilerSS" target="_blank"
+                         >
+                        <i class="icon icon-lg icon-github"></i>
+                        Github
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Web安全——浏览器安全</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Web安全——浏览器安全</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-11-04T01:36:52.000Z" itemprop="datePublished" class="page-time">
+  2019-11-04
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Web安全/">Web安全</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安全三要素与四个安全原则"><span class="post-toc-number">1.</span> <span class="post-toc-text">安全三要素与四个安全原则</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安全三要素"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">安全三要素</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#四个安全原则"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">四个安全原则</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#浏览器安全"><span class="post-toc-number">2.</span> <span class="post-toc-text">浏览器安全</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#同源策略"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">同源策略</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#浏览器沙箱"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">浏览器沙箱</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#恶意网址拦截"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">恶意网址拦截</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-web-security-browser"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Web安全——浏览器安全</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-11-04 09:36:52" datetime="2019-11-04T01:36:52.000Z"  itemprop="datePublished">2019-11-04</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Web安全/">Web安全</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>浏览器发展大到今天已经成为绝大多数用户使用得联网工具，浏览器市场的竞争也日趋白热化，浏览器安全也在这种环境中被越来越多人重视，许多浏览器厂商也在这方面下足了功夫。<br><a id="more"></a></p>
+<h1 id="安全三要素与四个安全原则"><a href="#安全三要素与四个安全原则" class="headerlink" title="安全三要素与四个安全原则"></a>安全三要素与四个安全原则</h1><h2 id="安全三要素"><a href="#安全三要素" class="headerlink" title="安全三要素"></a>安全三要素</h2><ol>
+<li>机密性(Confidentiality)：要求保护数据内容不能泄露，加密是实现机密性的常见手段。</li>
+<li>完整性(Integrity)：要求保护数据内容是完整、没有被篡改的。常见的保证一致性的手段是数字签名。</li>
+<li>可用性(Availability)：要求保护资源是”随需而得”。有一种攻击叫做拒绝服务攻击，简称DoS(Defial of Service)，DoS就是破坏安全的可用性。</li>
+<li>还有一些诸如可审计性、不可抵赖性等，但最重要的是以上三个要素。</li>
+</ol>
+<h2 id="四个安全原则"><a href="#四个安全原则" class="headerlink" title="四个安全原则"></a>四个安全原则</h2><ol>
+<li>Secure By Default原则<ol>
+<li>黑名单、白名单：一般情况下我们使用白名单的方式来保证安全，如服务器端口开放、富文本html标签、跨域访问策略文件。</li>
+<li>最小权限原则：要求系统只授予主体必要的权限，而不要过渡授权，这样能有效减少系统、网络、应用、数据库出错的机会。</li>
+</ol>
+</li>
+<li>纵深防御原则：包括两层含义，首先，要在各个不同层面、不同方面实施安全方案，避免出现疏漏，不同安全方案之间需要相互配合，构成一个整体；其次，要在正确的地方做正确的事情，即：在解决根本问题的地方实施针对性的安全方案。</li>
+<li>数据与代码分离原则：这一原则广泛使用于各种由于“注入”而引发安全问题的场景。实际上，缓冲区溢出也可以认为是程序违背了这一原则的后果——程序在栈或者队中，将用户数据当作代码执行，混淆了代码与数据的边界，从而导致安全问题的发生。在Web安全中，由“注入”引起的问题如XSS、SQL Injection、CRLF Injection、X-Path Injection等。此类问题均可以根据“数据与代码分离原则”设计出真正安全的解决方案，因为这个原则抓住了漏洞形成的本质原因。</li>
+<li>不可预测性原则：能够有效对抗基于篡改、伪造的攻击。比如数据表里面的id字段，如果是可预测的，那么攻击者要想批量删除这些数据，直接写个简单的循环删除的脚本就可以了；还有token等。不可预测性的实现往往需要用到加密算法、随机数算法、哈希算法。</li>
+</ol>
+<h1 id="浏览器安全"><a href="#浏览器安全" class="headerlink" title="浏览器安全"></a>浏览器安全</h1><h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><p>同源策略(Same Origin Policy)是一种约定，它是浏览器最核心也是最基本的安全功能，如果缺少了同源策略，则浏览器的正常功能可能会受到影响。可以说Web是构建在同源策略的基础之上的，浏览器只是针对同源策略的一种实现。<br>浏览器的同源策略，限制了来自不同源的 “document” 或脚本，对当前 “document” 读取或设置某些属性。这一策略极其重要。<br>影响“源”的因素有：host(域名或IP地址)、子域名、端口、协议。<br><b>对于当前页面来说，页面内存放Javascript文件的域并不重要，重要的是加载Javascript页面所在的域是什么</b>，换言之，a.com通过以下代码：</p>
+<pre><code>&lt;script src=&quot;http://b.com/b.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>加载了b.com上的b.js，但是b.js是运行在a.com页面中的，因此对于当前打开的页面(a.com页面)来说，b.js的Origin就应该是a.com而非b.com。<br>在浏览器中<b><code>&lt;script&gt;、&lt;img&gt;、&lt;iframe&gt;、&lt;link&gt;</code></b>等标签都可以跨域加载资源，而不受同源策略的限制。这些带“src”属性的标签每次加载时，实际上是由浏览器发起了一次GET请求。不同于XMLHttpResuest的是，通过src属性加载的资源，浏览器限制了Javascript的权限，使其不能读、写返回的内容。<br>XMLHttpRequest受到同源策略的约束，不能跨域访问资源，如果XMLHttpRequest能够跨域访问资源，则可能会导致一些敏感数据泄露，比如CSRF的token，从而导致发生安全问题。<br>但是随着业务的发展，跨域请求的需求越来越迫切，因此W3C委员会制定了XMLHttpRequest跨域访问标准。它需要通过目标域返回的HTTP头来授权是否允许跨域访问，因为HTTP头对于Javascript爱说一般是无法控制的，所以认为这个方案可以实施。<br><b>注意：</b>这个跨域访问方案的安全基础就是信任“Javascript无法控制该HTTP头”，如果此信任基础被打破，此方案也将不再安全。<br>对于浏览器来说，除了DOM、Cookie、XMLHttpRequest会受到同源策略的限制外，浏览器加载的一些第三方插件也有各自的同源策略。最常见的一些插件如Flash、Java Applet、Silverlight、Google Gears等都有自己的控制策略。</p>
+<h2 id="浏览器沙箱"><a href="#浏览器沙箱" class="headerlink" title="浏览器沙箱"></a>浏览器沙箱</h2><p>在网页中插入一段恶意代码，历以浏览器漏洞执行任意代码的攻击方式，在黑客圈子里被形象地成为“挂马”。为了对抗挂马，浏览器厂商根据挂马特点研究出了一些对抗挂马的技术，浏览器还发展出了多进程架构。<br>浏览器的多进程架构，将浏览器的各个功能模块分开，各个浏览器实例分开，当一个进程奔溃时，也不会影响其他的进程。<br>Google Chrome是第一个采取多进程架构的浏览器。Google Chrome的主要进程为：浏览器进程、渲染进程、插件进程、扩展进程。插件进程如flash、java、pdf等与浏览器进程严格隔离，因此不会相互影响。<br>渲染引擎由Sandbox隔离，网页代码要与浏览器内核进行通信、与操作系统通信都需要通过IPC channel，在其中会进行一些安全检查。<br>在现今的浏览器中，虽然由多进程架构和Sandbox的保护，但是浏览器所加载的一些三方插件却往往不受Sandbox管辖。</p>
+<h2 id="恶意网址拦截"><a href="#恶意网址拦截" class="headerlink" title="恶意网址拦截"></a>恶意网址拦截</h2><p>钓鱼网站、诈骗网站对于用户来说是一种恶意网址。为了保护用户安全，浏览器厂商纷纷推出了各自的拦截恶意网址功能。目前各个浏览器的拦截恶意网址的功能都是基于“黑名单”的。<br>恶意网址拦截的原理很简单，一般都是浏览器周期性地从服务器端获取一份最新的恶意网址黑名单，如果用户上网时访问的网址存在于此黑名单中，浏览器会弹出一个警告页面。<br>常见的恶意网址分为两类：一类是挂马网站，这些网站通常包含由恶意的脚本如Javascript或Flash，通过利用浏览器的漏洞（包括一些插件、控件漏洞）执行shellcode，在用户电脑中植入木马；另一类是钓鱼网站，通过模仿知名网站的相似页面来欺骗用户。<br>PhishTank是互联网上免费提供恶意网站黑名单的组织之一，它的黑名单由世界各地的志愿者提供，且更新频繁。<br>除了恶意网站黑名单功能为，主流浏览器都开始支持EVSSL证书(Extened Validation SSL Certificate)，以增强对安全网站的识别。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-11-04T05:24:27.221Z" itemprop="dateUpdated">2019-11-04 13:24:27</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://eviler.top">
+            <img src="/img/eviler.png" alt="Eviler Zhao">
+            Eviler Zhao
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web安全/">Web安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器/">浏览器</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://eviler.top/articles/web-security-browser/&title=《Web安全——浏览器安全》 — 独孤剑走偏锋&pic=https://eviler.top/img/eviler.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://eviler.top/articles/web-security-browser/&title=《Web安全——浏览器安全》 — 独孤剑走偏锋&source=浏览器发展大到今天已经成为绝大多数用户使用得联网工具，浏览器市场的竞争也日趋白热化，浏览器安全也在这种环境中被越来越多人重视，许多浏览器厂商也在这方面下足..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://eviler.top/articles/web-security-browser/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Web安全——浏览器安全》 — 独孤剑走偏锋&url=https://eviler.top/articles/web-security-browser/&via=https://eviler.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://eviler.top/articles/web-security-browser/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/articles/javascript-function-closure/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">javascript函数表达式之闭包</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Eviler Zhao &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://eviler.top/articles/web-security-browser/&title=《Web安全——浏览器安全》 — 独孤剑走偏锋&pic=https://eviler.top/img/eviler.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://eviler.top/articles/web-security-browser/&title=《Web安全——浏览器安全》 — 独孤剑走偏锋&source=浏览器发展大到今天已经成为绝大多数用户使用得联网工具，浏览器市场的竞争也日趋白热化，浏览器安全也在这种环境中被越来越多人重视，许多浏览器厂商也在这方面下足..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://eviler.top/articles/web-security-browser/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Web安全——浏览器安全》 — 独孤剑走偏锋&url=https://eviler.top/articles/web-security-browser/&via=https://eviler.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://eviler.top/articles/web-security-browser/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLUlEQVR42u3a0WrDMAxG4b7/S2ewq0Goc34pHY18fFXW1PHngbAsvV54HL/j/Pn8zN9x/jt5C3myOGTIkPFYxrEcnaXXlvhuC969S4YMGfsw0unI4tbPky0ga5MhQ4YMMjVHkidlyJAh4xMBd/1MepSUIUOGjE4SS17At4MH95tzcRkyZDyQ0SkMfPrzP9U3ZMiQ8cWMIxxpmE6v+4urkiFDxmjG+vosDbtknnUwbR1JZciQMZrBr/vT9otPpLjF/4kMGTLGMfh0PGjybzlbhgwZ+zB4I0Wt2SJNYmvHUBkyZOzD6ITXtAkjTWgvWjpkyJCxAaNfUKw1SfCAe7ERMmTI2ICRLrTW88B/lYZ4GTJkTGWkV2ydhLN2QEQHRxkyZIxmoHhcCsqdxJXfocmQIWM3Bp8obdsijaoprNgcJkOGjAcyeEmgc6RLm8nSVcmQIWM2gxy50laMzsGulkLLkCFjNoMsMQ276yMgD9xBUi1DhozRDF56JEuJG7lwuEd4GTJkDGXwUFhbYho0eXG0WIuQIUPGYxkkaUzDaz8lDrZGhgwZoxmdFodaaL6rzCBDhox9GLWUlTdG8GNl67gpQ4aM0Qw+OsktB6fvkiFDxj4MfvXfD3x3zRzXN2TIkDGCQQIfL0Dy16dbIEOGDBn8Z52CZb+cIEOGDBlBowMOqf1iwEWSLEOGjA0YvEWVB9A4aDYCugwZMmYzaglkej2XHgpJMnxDfUOGDBnfzvgBxwl0co/YeAEAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '君于何处?待君归来~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '君归矣，善哉！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
