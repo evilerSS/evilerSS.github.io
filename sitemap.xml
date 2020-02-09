@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://eviler.top/articles/web-security-browser/</loc>
+    
+    <lastmod>2020-02-09T04:42:28.538Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://eviler.top/articles/javascript-regexp/</loc>
     
     <lastmod>2020-02-09T04:26:48.254Z</lastmod>
