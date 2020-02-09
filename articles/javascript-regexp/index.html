@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="true/articles/javascript-regexp/">
+    
+    
+    <title>Javascript中的正则表达式详解以及一些常用表单验证实例 | 独孤剑走偏锋</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#000000">
+    
+    
+    <meta name="keywords" content="javascript">
+    <meta name="description" content="正则表达式是一个非常好用并且经常会用到的工具，然而学习了好长时间javascript却没有好好地学习一下正则表达式，现在系统地学习一下，并且学以致用，自己写几个用于表单数据格式验证的实例。">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript中的正则表达式详解以及一些常用表单验证实例">
+<meta property="og:url" content="https://eviler.top/articles/javascript-regexp/index.html">
+<meta property="og:site_name" content="独孤剑走偏锋">
+<meta property="og:description" content="正则表达式是一个非常好用并且经常会用到的工具，然而学习了好长时间javascript却没有好好地学习一下正则表达式，现在系统地学习一下，并且学以致用，自己写几个用于表单数据格式验证的实例。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-02-09T04:26:48.254Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript中的正则表达式详解以及一些常用表单验证实例">
+<meta name="twitter:description" content="正则表达式是一个非常好用并且经常会用到的工具，然而学习了好长时间javascript却没有好好地学习一下正则表达式，现在系统地学习一下，并且学以致用，自己写几个用于表单数据格式验证的实例。">
+    
+        <link rel="alternate" type="application/atom+xml" title="独孤剑走偏锋" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/eviler.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide"
+     >
+    <div class="inner flex-row-vertical">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+            <i class="icon icon-lg icon-close"></i>
+        </a>
+        <div class="brand-wrap" style="background-image:url(/img/headBack.jpg)">
+            <div class="brand">
+                <a href="/" class="avatar waves-effect waves-circle waves-light">
+                    <img src="/img/eviler.png">
+                </a>
+                <hgroup class="introduce">
+                    <h5 class="nickname">
+                        Eviler Zhao
+                    </h5>
+                    <a href="mailto:eviler_zhao@163.com" title="eviler_zhao@163.com" class="mail">eviler_zhao@163.com</a>
+                </hgroup>
+            </div>
+        </div>
+        <div class="scroll-wrap flex-col">
+            <ul class="nav">
+                
+                <li class="waves-block waves-effect">
+                    <a href="/"  >
+                        <i class="icon icon-lg icon-home"></i>
+                        主页
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="/archives"  >
+                        <i class="icon icon-lg icon-archives"></i>
+                        归档
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="/tags"  >
+                        <i class="icon icon-lg icon-tags"></i>
+                        标签
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="/categories"  >
+                        <i class="icon icon-lg icon-th-list"></i>
+                        分类
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="https://github.com/evilerSS" target="_blank"
+                         >
+                        <i class="icon icon-lg icon-github"></i>
+                        Github
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Javascript中的正则表达式详解以及一些常用表单验证实例</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Javascript中的正则表达式详解以及一些常用表单验证实例</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-11-28T12:06:49.000Z" itemprop="datePublished" class="page-time">
+  2018-11-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是正则表达式"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是正则表达式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#语法"><span class="post-toc-number">2.</span> <span class="post-toc-text">语法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#RegExp修饰符"><span class="post-toc-number">3.</span> <span class="post-toc-text">RegExp修饰符</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#RegExp模式"><span class="post-toc-number">4.</span> <span class="post-toc-text">RegExp模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#方括号"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">方括号</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#元字符"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">元字符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#量词"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">量词</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#RegExp-对象方法"><span class="post-toc-number">5.</span> <span class="post-toc-text">RegExp 对象方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#test方法"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">test方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#exec方法"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">exec方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#compile方法"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">compile方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#toString方法"><span class="post-toc-number">5.4.</span> <span class="post-toc-text">toString方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#RegExp-对象属性"><span class="post-toc-number">6.</span> <span class="post-toc-text">RegExp 对象属性</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#支持正则表达式的String对象的方法"><span class="post-toc-number">7.</span> <span class="post-toc-text">支持正则表达式的String对象的方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#search方法"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">search方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#match方法"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">match方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#replace方法"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">replace方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#split方法"><span class="post-toc-number">7.4.</span> <span class="post-toc-text">split方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#综合实例-amp-常用表单数据格式验证"><span class="post-toc-number">8.</span> <span class="post-toc-text">综合实例&amp;常用表单数据格式验证</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#代码"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">代码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#试一试"><span class="post-toc-number">8.2.</span> <span class="post-toc-text">试一试</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-javascript-regexp"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Javascript中的正则表达式详解以及一些常用表单验证实例</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-11-28 20:06:49" datetime="2018-11-28T12:06:49.000Z"  itemprop="datePublished">2018-11-28</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>正则表达式是一个非常好用并且经常会用到的工具，然而学习了好长时间javascript却没有好好地学习一下正则表达式，现在系统地学习一下，并且学以致用，自己写几个用于表单数据格式验证的实例。<br><a id="more"></a></p>
+<h2 id="什么是正则表达式"><a href="#什么是正则表达式" class="headerlink" title="什么是正则表达式"></a>什么是正则表达式</h2><p>正则表达式（英语：Regular Expression，再代码证常简写为regex、regexp或RE）使用单个字符串来描述、匹配一系列符合某个句法规则的字符串搜索模式。</p>
+<ul>
+<li>正则表达式是有一个字符序列形成的搜索模式。</li>
+<li>当你在文本中搜索数据时，你可以用搜索模式来描述你要查询的内容。</li>
+<li>正则表达式可以是一个简单的字符，或一个更复杂的模式。</li>
+<li>正则表达式可用于所有文本搜索和文本替换的操作。</li>
+</ul>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><pre><code>var patt = new Reg(pattern, modifiers);
+</code></pre><p>或者更简单的方式：</p>
+<pre><code>var patt=/pattern/modifiers
+</code></pre><ul>
+<li>pattern(模式)描述了表达式的模式</li>
+<li>modifiers(修饰符)用于指定全局匹配、区分大小写的匹配和多行匹配<br><b>注意:</b>当使用构造函数创造正则对象时，需要常规的字符转义规则（在前面加反斜杠 \）。比如，以下是等价的：<br><pre><br>  var re = new RegExp(“\w+”);<br>  var re = /\w+/;<br></pre><h2 id="RegExp修饰符"><a href="#RegExp修饰符" class="headerlink" title="RegExp修饰符"></a>RegExp修饰符</h2>修饰符用于执行不区分大小写和全文的搜索。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>i</td>
+<td>执行对大小写不敏感的匹配</td>
+</tr>
+<tr>
+<td>g</td>
+<td>执行全局匹配（查找所有匹配而非在找到第一个匹配后停止）</td>
+</tr>
+<tr>
+<td>m</td>
+<td>执行多行匹配</td>
+</tr>
+</tbody>
+</table>
+<h2 id="RegExp模式"><a href="#RegExp模式" class="headerlink" title="RegExp模式"></a>RegExp模式</h2><h3 id="方括号"><a href="#方括号" class="headerlink" title="方括号"></a>方括号</h3><p>方括号用于查找某个范围的字符：</p>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[abc]</td>
+<td>查找方括号之间的任何字符。</td>
+</tr>
+<tr>
+<td>[^abc]</td>
+<td>查找任何不在方括号之间的字符。</td>
+</tr>
+<tr>
+<td>[0-9]</td>
+<td>查找任何从 0 至 9 的数字。</td>
+</tr>
+<tr>
+<td>[a-z]</td>
+<td>查找任何从小写 a 到小写 z 的字符。</td>
+</tr>
+<tr>
+<td>[A-Z]</td>
+<td>查找任何从大写 A 到大写 Z 的字符。</td>
+</tr>
+<tr>
+<td>[A-z]</td>
+<td>查找任何从大写 A 到小写 z 的字符。</td>
+</tr>
+<tr>
+<td>[adgk]</td>
+<td>查找给定集合内的任何字符。</td>
+</tr>
+<tr>
+<td>[^adgk]</td>
+<td>查找给定集合外的任何字符。</td>
+</tr>
+<tr>
+<td>( red &#124; blue &#124; green )</td>
+<td>查找任何指定的选项。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h3><p>元字符（Metacharacter）是拥有特殊含义的字符：</p>
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.</td>
+<td>查找单个字符，除了换行和行结束符。</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>查找单词字符。</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>查找非单词字符。</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>查找数字。</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>查找非数字字符。</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>查找空白字符。</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>查找非空白字符。</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>匹配单词边界。</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>匹配非单词边界。</td>
+</tr>
+<tr>
+<td>\0</td>
+<td>查找 NULL 字符。</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>查找换行符。</td>
+</tr>
+<tr>
+<td>\f</td>
+<td>查找换页符。</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>查找回车符。</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>查找制表符。</td>
+</tr>
+<tr>
+<td>\v</td>
+<td>查找垂直制表符。</td>
+</tr>
+<tr>
+<td>\xxx</td>
+<td>查找以八进制数 xxx 规定的字符。</td>
+</tr>
+<tr>
+<td>\xdd</td>
+<td>查找以十六进制数 dd 规定的字符。</td>
+</tr>
+<tr>
+<td>\uxxxx</td>
+<td>查找以十六进制数 xxxx 规定的 Unicode 字符。</td>
+</tr>
+</tbody>
+</table>
+<p>什么是单词边界？找到一个博客，上面有讲解：<a href="https://www.cnblogs.com/fuhai/p/6149169.html" target="_blank" rel="noopener">正则表达式单词边界和非单词边界</a></p>
+<h3 id="量词"><a href="#量词" class="headerlink" title="量词"></a>量词</h3><table>
+<thead>
+<tr>
+<th>量词</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>n+</td>
+<td>匹配任何包含至少一个 n 的字符串。 例如，/a+/ 匹配 “candy” 中的 “a”，”caaaaaaandy” 中所有的 “a”。</td>
+</tr>
+<tr>
+<td>n*</td>
+<td>匹配任何包含零个或多个 n 的字符串。例如，/bo*/ 匹配 “A ghost booooed” 中的 “boooo”，”A bird warbled” 中的 “b”，但是不匹配 “A goat grunted”。</td>
+</tr>
+<tr>
+<td>n?</td>
+<td>匹配任何包含零个或一个 n 的字符串。例如，/e?le?/ 匹配 “angel” 中的 “el”，”angle” 中的 “le”。</td>
+</tr>
+<tr>
+<td>n{X}</td>
+<td>匹配包含 X 个 n 的序列的字符串。例如，/a{2}/ 不匹配 “candy,” 中的 “a”，但是匹配 “caandy,” 中的两个 “a”，且匹配 “caaandy.” 中的前两个 “a”。</td>
+</tr>
+<tr>
+<td>n{X,}</td>
+<td>X 是一个正整数。前面的模式 n 连续出现至少 X 次时匹配。例如，/a{2,}/ 不匹配 “candy” 中的 “a”，但是匹配 “caandy” 和 “caaaaaaandy.” 中所有的 “a”。</td>
+</tr>
+<tr>
+<td>n{X,Y}</td>
+<td>X 和 Y 为正整数。前面的模式 n 连续出现至少 X 次，至多 Y 次时匹配。                                                                              例如，/a{1,3}/ 不匹配 “cndy”，匹配 “candy,” 中的 “a”，”caandy,” 中的两个 “a”，匹配 “caaaaaaandy” 中的前面三个 “a”。注意，当匹配 “caaaaaaandy” 时，即使原始字符串拥有更多的 “a”，匹配项也是 “aaa”。</td>
+</tr>
+<tr>
+<td>n$</td>
+<td>匹配任何结尾为 n 的字符串。</td>
+</tr>
+<tr>
+<td>^n</td>
+<td>匹配任何开头为 n 的字符串。</td>
+</tr>
+<tr>
+<td>?=n</td>
+<td>匹配任何其后紧接指定字符串 n 的字符串。捕获性分组</td>
+</tr>
+<tr>
+<td>?:n</td>
+<td>匹配任何其后紧接指定字符串 n 的字符串。非捕获性分组</td>
+</tr>
+<tr>
+<td>?!n</td>
+<td>匹配任何其后没有紧接指定字符串 n 的字符串。</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://www.cnblogs.com/xiuluo--angel/p/7100312.html" target="_blank" rel="noopener">捕获性分组，非捕获性分组，前瞻，后瞻</a></p>
+<h2 id="RegExp-对象方法"><a href="#RegExp-对象方法" class="headerlink" title="RegExp 对象方法"></a>RegExp 对象方法</h2><h3 id="test方法"><a href="#test方法" class="headerlink" title="test方法"></a>test方法</h3><p>检索字符串中指定的值。返回 true 或 false。<br>语法：RegExpObject.test(string)<br>参数：string：必须。要检测的字符串。<br>实例：</p>
+<pre><code>var str=&quot;Hello world!&quot;;
+//查找&quot;Hello&quot;
+var patt=/Hello/g;
+var result=patt.test(str);
+document.write(&quot;返回值: &quot; +  result); 
+//查找 &quot;Runoob&quot;
+patt=/Runoob/g;
+result=patt.test(str);
+document.write(&quot;&lt;br&gt;返回值: &quot; +  result);
+</code></pre><p>实例输出结果：</p>
+<pre><code>返回值: true
+返回值: false
+</code></pre><h3 id="exec方法"><a href="#exec方法" class="headerlink" title="exec方法"></a>exec方法</h3><p>用于检索字符串中的正则表达式的匹配，如果字符串中有匹配的值返回该匹配值，否则返回 null。<br>语法：RegExpObject.exec(string)<br>参数：string：必须。要检测的字符串。<br>实例：</p>
+<pre><code>var str=&quot;Hello world!&quot;;
+//查找&quot;Hello&quot;
+var patt=/Hello/g;
+var result=patt.exec(str);
+document.write(&quot;返回值: &quot; +  result); 
+//查找 &quot;RUNOOB&quot;
+patt=/RUNOOB/g;
+result=patt.exec(str);
+document.write(&quot;&lt;br&gt;返回值: &quot; +  result);
+</code></pre><p>实例输出结果：</p>
+<pre><code>返回值: Hello
+返回值: false
+</code></pre><p><b>说明：</b><br>exec() 方法的功能非常强大，它是一个通用的方法，而且使用起来也比 test() 方法以及支持正则表达式的 String 对象的方法更为复杂。<br>如果 exec() 找到了匹配的文本，则返回一个结果数组。否则，返回 null。此数组的第 0 个元素是与正则表达式相匹配的文本，第 1 个元素是与 RegExpObject 的第 1 个子表达式相匹配的文本（如果有的话），第 2 个元素是与 RegExpObject 的第 2 个子表达式相匹配的文本（如果有的话），以此类推。除了数组元素和 length 属性之外，exec() 方法还返回两个属性。index 属性声明的是匹配文本的第一个字符的位置。input 属性则存放的是被检索的字符串 string。我们可以看得出，在调用非全局的 RegExp 对象的 exec() 方法时，返回的数组与调用方法 String.match() 返回的数组是相同的。<br>但是，当 RegExpObject 是一个全局正则表达式时，exec() 的行为就稍微复杂一些。它会在 RegExpObject 的 lastIndex 属性指定的字符处开始检索字符串 string。当 exec() 找到了与表达式相匹配的文本时，在匹配后，它将把 RegExpObject 的 lastIndex 属性设置为匹配文本的最后一个字符的下一个位置。这就是说，您可以通过反复调用 exec() 方法来遍历字符串中的所有匹配文本。当 exec() 再也找不到匹配的文本时，它将返回 null，并把 lastIndex 属性重置为 0。<br>比如以下的实例：</p>
+<pre><code>var str = &quot;Visit W3School&quot;; 
+var patt = new RegExp(&quot;W3School&quot;,&quot;g&quot;);
+var result;
+while ((result = patt.exec(str)) != null)  {
+    document.write(result);
+    document.write(&quot;&lt;br /&gt;&quot;);
+    document.write(patt.lastIndex);
+}
+</code></pre><p>输出：</p>
+<pre><code>W3School
+14
+</code></pre><h3 id="compile方法"><a href="#compile方法" class="headerlink" title="compile方法"></a>compile方法</h3><p>compile() 方法用于在脚本执行过程中编译正则表达式。<br>compile() 方法也可用于改变和重新编译正则表达式。<br>语法：RegExpObject.compile(regexp,modifier)<br>参数：regexp：正则表达式；modifier：规定匹配的类型<br>实例：在字符串中全局搜索 “man”，并用 “person” 替换。然后通过 compile() 方法，改变正则表达式，用 “person” 替换 “man” 或 “woman”</p>
+<pre><code>var str=&quot;Every man in the world! Every woman on earth!&quot;;
+patt=/man/g;
+str2=str.replace(patt,&quot;person&quot;);
+document.write(str2+&quot;&lt;br /&gt;&quot;);
+patt=/(wo)?man/g;
+patt.compile(patt);
+str2=str.replace(patt,&quot;person&quot;);
+document.write(str2);
+</code></pre><p>实例输出：</p>
+<pre><code>Every person in the world! Every woperson on earth!
+Every person in the world! Every person on earth!
+</code></pre><h3 id="toString方法"><a href="#toString方法" class="headerlink" title="toString方法"></a>toString方法</h3><p>返回正则表达式的字符串值<br>语法：RegExpObject.toString()<br>实例：</p>
+<pre><code>var patt = new RegExp(&quot;Eviler&quot;, &quot;g&quot;);
+var res = patt.toString();
+document.weite(res);
+</code></pre><p>实例输出：</p>
+<pre><code>/Eviler/g
+</code></pre><h2 id="RegExp-对象属性"><a href="#RegExp-对象属性" class="headerlink" title="RegExp 对象属性"></a>RegExp 对象属性</h2><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>global</td>
+<td>判断是否设置了 “g” 修饰符</td>
+</tr>
+<tr>
+<td>ignoreCase</td>
+<td>判断是否设置了 “i” 修饰符</td>
+</tr>
+<tr>
+<td>multiline</td>
+<td>判断是否设置了 “m” 修饰符</td>
+</tr>
+<tr>
+<td>constructor</td>
+<td>返回一个函数，该函数是一个创建 RegExp 对象的原型。</td>
+</tr>
+<tr>
+<td>lastIndex</td>
+<td>用于规定下次匹配的起始位置</td>
+</tr>
+<tr>
+<td>source</td>
+<td>返回正则表达式的匹配模式</td>
+</tr>
+</tbody>
+</table>
+<p><b>注意：</b></p>
+<ol>
+<li>lastIndex 属性只有设置标志 g 才能使用。上次匹配的结果是由方法 RegExp.exec() 和 RegExp.test() 找到的，它们都以 lastIndex 属性所指的位置作为下次检索的起始点。这样，就可以通过反复调用这两个方法来遍历一个字符串中的所有匹配文本。</li>
+<li>该属性是可读可写的。只要目标字符串的下一次搜索开始，就可以对它进行设置。当方法 exec() 或 test() 再也找不到可以匹配的文本时，它们会自动把 lastIndex 属性重置为 0。</li>
+</ol>
+<h2 id="支持正则表达式的String对象的方法"><a href="#支持正则表达式的String对象的方法" class="headerlink" title="支持正则表达式的String对象的方法"></a>支持正则表达式的String对象的方法</h2><h3 id="search方法"><a href="#search方法" class="headerlink" title="search方法"></a>search方法</h3><p>search方法用来检索与正则表达式相匹配的值<br>实例：查找”Eviler”:</p>
+<pre><code>var str=&quot;Visit Eviler&apos;s Blog!&quot;; 
+var n=str.search(&quot;Eviler&quot;);
+document.write(n);
+</code></pre><p>实例输出：</p>
+<pre><code>6
+</code></pre><h3 id="match方法"><a href="#match方法" class="headerlink" title="match方法"></a>match方法</h3><p>match方法用来找到一个或多个正则表达式的匹配<br>实例：</p>
+<pre><code>var str=&quot;The rain in SPAIN stays mainly in the plain&quot;; 
+var n=str.match(/ain/g);
+document.write(n);
+</code></pre><p>实例输出：</p>
+<pre><code>ain,ain,ain
+</code></pre><p><b>注意：</b>match() 方法将检索字符串 String Object，以找到一个或多个与 regexp 匹配的文本。这个方法的行为在很大程度上有赖于 regexp 是否具有标志 g。如果 regexp 没有标志 g，那么 match() 方法就只能在 stringObject 中执行一次匹配。如果没有找到任何匹配的文本， match() 将返回 null。否则，它将返回一个数组，其中存放了与它找到的匹配文本有关的信息。</p>
+<h3 id="replace方法"><a href="#replace方法" class="headerlink" title="replace方法"></a>replace方法</h3><p>replace方法用来替换与正则表达式匹配的子串<br>实例：</p>
+<pre><code>var str=&quot;There are some men and women!Men and Women!&quot;;
+document.write(&quot;原字符串：&quot;+ &quot;&lt;br /&gt;&quot;+str+ &quot;&lt;br /&gt;&quot;);
+var m=str.replace(/men/i,&quot;boys&quot;);
+document.write(&quot;将第一个&apos;men&apos;(不区分大小写)替换成&apos;boys&apos;：&quot;+ &quot;&lt;br /&gt;&quot;+m + &quot;&lt;br /&gt;&quot;);
+var n=str.replace(/women/gi,&quot;girls&quot;);
+document.write(&quot;将所有&apos;women&apos;(不区分大小写)替换成&apos;girls&apos;：&quot;+ &quot;&lt;br /&gt;&quot;+n);
+</code></pre><p>实例输出：</p>
+<pre><code>原字符串：
+There are some men and women!Men and Women!
+将第一个&apos;men&apos;(不区分大小写)替换成&apos;boys&apos;：
+There are some boys and women!Men and Women!
+将所有&apos;women&apos;(不区分大小写)替换成&apos;girls&apos;：
+There are some men and girls!Men and girls!
+</code></pre><h3 id="split方法"><a href="#split方法" class="headerlink" title="split方法"></a>split方法</h3><p>split方法用来把字符串分割为字符串数组<br>实例：获取一段英文句子中的单词</p>
+<pre><code>var str=&quot;This is my personal page&quot;;
+document.write(str.split(&apos; &apos;));
+</code></pre><p>实例输出：</p>
+<pre><code>This,is,my,personal,page
+</code></pre><h2 id="综合实例-amp-常用表单数据格式验证"><a href="#综合实例-amp-常用表单数据格式验证" class="headerlink" title="综合实例&amp;常用表单数据格式验证"></a>综合实例&amp;常用表单数据格式验证</h2><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code>//验证是否位合法的邮箱地址
+function isEmail(str) {
+    var reg = /^\w+@[a-zA-Z0-9]{2,10}(?:\.[a-z]{2,4}){1,3}$/;
+    return reg.test(str);
+}
+
+//验证是否是合法的手机号码
+function isPhoneNumber(str) {
+    var reg = /^1[34578]\d{9}$/;
+    return reg.test(str);
+}
+
+//验证中国邮政编码,开头不能为0，共6位
+function isZipCode(str) {
+    var reg = /^[1-9]\d{5}$/;
+    return reg.test(str);
+}
+
+//验证中文姓名，2-5个汉字
+function isChainName(str) {
+    var reg = /^[\u4E00-\u9FA5]{2,5}$/;
+    return reg.test(str);
+}
+
+//验证是否为正整数
+function isNumber(str) {
+    if (!str) {
+        return false;
+    }
+    var reg = /\D/;
+    return !reg.test(str);
+}
+</code></pre><h3 id="试一试"><a href="#试一试" class="headerlink" title="试一试"></a>试一试</h3><p><div><ul><li>邮&#12288;&#12288;箱：<input type="email" id="input1"><span class="warning" style="color:red;margin-left:20px"></span></li><li>手机号码：<input type="text" id="input2"><span class="warning" style="color:red;margin-left:20px"></span></li><li>邮政编码：<input type="text" id="input3"><span class="warning" style="color:red;margin-left:20px"></span></li><li>中文姓名：<input type="text" id="input4"><span class="warning" style="color:red;margin-left:20px"></span></li><li>正整数验证：<input type="text" id="input5"><span class="warning" style="color:red;margin-left:20px"></span></li></ul><button onclick="submit()" style="padding:0 50px">验证</button></div></p>
+<script type="text/javascript">
+function submit() {
+    var input1 = document.getElementById("input1");
+    var value1 = input1.value;
+    input1.parentNode.querySelector(".warning").innerHTML = isEmail(value1)
+    var input2 = document.getElementById("input2");
+    var value2 = input2.value;
+    input2.parentNode.querySelector(".warning").innerHTML = isPhoneNumber(value2)
+    var input3 = document.getElementById("input3");
+    var value3 = input3.value;
+    input3.parentNode.querySelector(".warning").innerHTML = isZipCode(value3)
+    var input4 = document.getElementById("input4");
+    var value4 = input4.value;
+    input4.parentNode.querySelector(".warning").innerHTML = isChainName(value4)
+    var input5 = document.getElementById("input5");
+    var value5 = input5.value;
+    input5.parentNode.querySelector(".warning").innerHTML = isNumber(value5)
+}
+//验证是否位合法的邮箱地址
+function isEmail(str) {
+    var reg = /^\w+@[a-zA-Z0-9]{2,10}(?:\.[a-z]{2,4}){1,3}$/;
+    return reg.test(str);
+}
+//验证是否是合法的手机号码
+function isPhoneNumber(str) {
+    var reg = /^1[34578]\d{9}$/;
+    return reg.test(str);
+}
+//验证中国邮政编码,开头不能为0，共6位
+function isZipCode(str) {
+    var reg = /^[1-9]\d{5}$/;
+    return reg.test(str);
+}
+//验证中文姓名，2-5个汉字
+function isChainName(str) {
+    var reg = /^[\u4E00-\u9FA5]{2,5}$/;
+    return reg.test(str);
+}
+//验证是否为正整数
+function isNumber(str) {
+    if (!str) {
+        return false;
+    }
+    var reg = /\D/;
+    return !reg.test(str);
+}
+</script>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-02-09T04:26:48.254Z" itemprop="dateUpdated">2020-02-09 12:26:48</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://eviler.top">
+            <img src="/img/eviler.png" alt="Eviler Zhao">
+            Eviler Zhao
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://eviler.top/articles/javascript-regexp/&title=《Javascript中的正则表达式详解以及一些常用表单验证实例》 — 独孤剑走偏锋&pic=https://eviler.top/img/eviler.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://eviler.top/articles/javascript-regexp/&title=《Javascript中的正则表达式详解以及一些常用表单验证实例》 — 独孤剑走偏锋&source=正则表达式是一个非常好用并且经常会用到的工具，然而学习了好长时间javascript却没有好好地学习一下正则表达式，现在系统地学习一下，并且学以致用，自己..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://eviler.top/articles/javascript-regexp/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Javascript中的正则表达式详解以及一些常用表单验证实例》 — 独孤剑走偏锋&url=https://eviler.top/articles/javascript-regexp/&via=https://eviler.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://eviler.top/articles/javascript-regexp/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Eviler Zhao &copy; 2018 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://eviler.top/articles/javascript-regexp/&title=《Javascript中的正则表达式详解以及一些常用表单验证实例》 — 独孤剑走偏锋&pic=https://eviler.top/img/eviler.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://eviler.top/articles/javascript-regexp/&title=《Javascript中的正则表达式详解以及一些常用表单验证实例》 — 独孤剑走偏锋&source=正则表达式是一个非常好用并且经常会用到的工具，然而学习了好长时间javascript却没有好好地学习一下正则表达式，现在系统地学习一下，并且学以致用，自己..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://eviler.top/articles/javascript-regexp/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Javascript中的正则表达式详解以及一些常用表单验证实例》 — 独孤剑走偏锋&url=https://eviler.top/articles/javascript-regexp/&via=https://eviler.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://eviler.top/articles/javascript-regexp/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMklEQVR42u3a0U7DMAwFUP7/p8srEmS7tjukJidPaCttTpGMHfvrK17Xj/X7k9Xnv+9QfcrNCwMD47GM6+WqMlZbT+6cf/vHEzEwMA5gJJt4TbqLt7rzmz1jYGBgFDc9CbUYGBgYn2Ak6WM1WGNgYGD0itjk+tVBW/XA7oO1OAYGxgMZ+an7///8kf4GBgbGoxhXcVWD4CRZLOwKAwNja8ZkDGLSAPjIWAYGBsamjHwrveIzOTLrwf74O2BgYGzK6BWrSf04KYCT332DwcDA2IjRO9aftDYn5W75uA0DA2MLRj7ikKeP+VHdXSEeAwNjb0b1YKt36NYbEctfIgYGxt6M+bBFEqDnieDNYxkYGBiPYlQP5XuDF9W0Mgm1y9QQAwPjAEYOqIbaalJYSBMxMDC2ZuRBrdqkzMvafCflxgAGBsYWjOrjr3hVO4zVlxUVsRgYGFswqi2B+YjY5P69xgYGBsYejHlJ2Uv47kpYMTAwzmHM25O9VmW18bB8rRgYGIcxeiNc+ZDZvMRdpoYYGBgHMJIQ3Evv8tZm798ABgbGCYz8aL56fJ/8bh6sl1diYGBsyriKq1ro5t9WE8HleSEGBsZ2jLuSvN7QWPUVNIctMDAwtmD0Ss1ee2AyhHFDEYuBgfFwxutLE0beTnj9Sd5aeNMYwMDAOJjRu3IyZhEFYgwMDIzBINe9QXZ5BwwMjAMY+YN731bbk0kRi4GBcQ6jF/KSo/9JdyIP9xgYGFszvgFGEA8sn2shXwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '君于何处?待君归来~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '君归矣，善哉！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
