@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="true/articles/process-and-thread/">
+    
+    
+    <title>进程与线程 | 独孤剑走偏锋</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#000000">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="进程（process）和线程（thread）是操作系统中的两个基本概念，但是这两个的概念有些抽象，所以这里用类比的方法介绍一下这两个的概念，方便理解。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="进程与线程">
+<meta property="og:url" content="https://eviler.top/articles/process-and-thread/index.html">
+<meta property="og:site_name" content="独孤剑走偏锋">
+<meta property="og:description" content="进程（process）和线程（thread）是操作系统中的两个基本概念，但是这两个的概念有些抽象，所以这里用类比的方法介绍一下这两个的概念，方便理解。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-02-10T11:17:01.191Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="进程与线程">
+<meta name="twitter:description" content="进程（process）和线程（thread）是操作系统中的两个基本概念，但是这两个的概念有些抽象，所以这里用类比的方法介绍一下这两个的概念，方便理解。">
+    
+        <link rel="alternate" type="application/atom+xml" title="独孤剑走偏锋" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/eviler.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide"
+     >
+    <div class="inner flex-row-vertical">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+            <i class="icon icon-lg icon-close"></i>
+        </a>
+        <div class="brand-wrap" style="background-image:url(/img/headBack.jpg)">
+            <div class="brand">
+                <a href="/" class="avatar waves-effect waves-circle waves-light">
+                    <img src="/img/eviler.png">
+                </a>
+                <hgroup class="introduce">
+                    <h5 class="nickname">
+                        Eviler Zhao
+                    </h5>
+                    <a href="mailto:eviler_zhao@163.com" title="eviler_zhao@163.com" class="mail">eviler_zhao@163.com</a>
+                </hgroup>
+            </div>
+        </div>
+        <div class="scroll-wrap flex-col">
+            <ul class="nav">
+                
+                <li class="waves-block waves-effect">
+                    <a href="/"  >
+                        <i class="icon icon-lg icon-home"></i>
+                        主页
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="/archives"  >
+                        <i class="icon icon-lg icon-archives"></i>
+                        归档
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="/tags"  >
+                        <i class="icon icon-lg icon-tags"></i>
+                        标签
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="/categories"  >
+                        <i class="icon icon-lg icon-th-list"></i>
+                        分类
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="https://github.com/evilerSS" target="_blank"
+                         >
+                        <i class="icon icon-lg icon-github"></i>
+                        Github
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">进程与线程</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">进程与线程</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-02-10T09:14:32.000Z" itemprop="datePublished" class="page-time">
+  2020-02-10
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/操作系统/">操作系统</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#类比"><span class="post-toc-number">1.</span> <span class="post-toc-text">类比</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#引用"><span class="post-toc-number">2.</span> <span class="post-toc-text">引用</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-process-and-thread"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">进程与线程</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-02-10 17:14:32" datetime="2020-02-10T09:14:32.000Z"  itemprop="datePublished">2020-02-10</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/操作系统/">操作系统</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>进程（process）和线程（thread）是操作系统中的两个基本概念，但是这两个的概念有些抽象，所以这里用类比的方法介绍一下这两个的概念，方便理解。<br><a id="more"></a></p>
+<h2 id="类比"><a href="#类比" class="headerlink" title="类比"></a>类比</h2><p>假设有一个工厂，工厂里面有许多车间，每个车间里有许多工人，所有车间的工作都必须用电。我们将用工厂和计算机做一个类比来解释进程和线程。</p>
+<ol>
+<li>CPU是计算机的核心，计算机内的所有计算任务都是由它来完成的。<br>我们将电力类比为CPU（虽然这样类别不太准确，但突出了没有CPU计算机就无法工作特征，有这个就够了，如果没有CPU，计算机将无法工作，同样没有电力，整个工厂也就无法开工了）。</li>
+<li>假定工厂的电力有限，一次只能供一个车间使用，也就是说，一个车间开工的时候，其他车间都必须停工。背后的含义就是，单个CPU一次只能运行任务<br>进程就好比工厂里面的车间，它代表CPU所能处理的单个任务。任一时刻，CPU总是运行一个进程，其他进程处于非运行状态。</li>
+<li>一个车间里，可以有很多工人。他们协同完成一个任务。<br>线程就好比车间里的工人，一个进程可以包括多个线程。</li>
+<li>车间的空间是工人们共享的，比如许多房间是每个工人都可以进出的。这象征一个进程的内存空间是共享的，每个线程都可以使用这些共享内存。</li>
+<li>可是，每间房间的大小不同，有些房间最多只能容纳一个人，比如厕所。里面有人的时候，其他人就不能进去了。这代表一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。<ol>
+<li>一个防止他人进入的简单方法，就是门口加一把锁。先到的人锁上门，后到的人看到上锁，就在门口排队，等锁打开再进去。这就叫”互斥锁”（Mutual exclusion，缩写 Mutex），防止多个线程同时读写某一块内存区域。</li>
+<li>还有些房间，可以同时容纳n个人，比如厨房。也就是说，如果人数大于n，多出来的人只能在外面等着。这好比某些内存区域，只能供给固定数目的线程使用。</li>
+<li>这时的解决方法，就是在门口挂n把钥匙。进去的人就取一把钥匙，出来时再把钥匙挂回原处。后到的人发现钥匙架空了，就知道必须在门口排队等着了。这种做法叫做”信号量”（Semaphore），用来保证多个线程不会互相冲突。</li>
+<li>不难看出，mutex是semaphore的一种特殊情况（n=1时）。也就是说，完全可以用后者替代前者。但是，因为mutex较为简单，且效率高，所以在必须保证资源独占的情况下，还是采用这种设计。</li>
+</ol>
+</li>
+<li>操作系统的设计，可以归结为三点：<ol>
+<li>以多进程形式，允许多个任务同时运行；</li>
+<li>以多线程形式，允许单个任务分成不同的部分运行；</li>
+<li>提供协调机制，一方面防止进程之间和线程之间产生冲突，另一方面允许进程之间和线程之间共享资源。</li>
+</ol>
+</li>
+</ol>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p><a href="http://www.ruanyifeng.com/blog/2013/04/processes_and_threads.html" target="_blank" rel="noopener">进程与线程的一个简单解释</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-02-10T11:17:01.191Z" itemprop="dateUpdated">2020-02-10 19:17:01</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://eviler.top">
+            <img src="/img/eviler.png" alt="Eviler Zhao">
+            Eviler Zhao
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://eviler.top/articles/process-and-thread/&title=《进程与线程》 — 独孤剑走偏锋&pic=https://eviler.top/img/eviler.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://eviler.top/articles/process-and-thread/&title=《进程与线程》 — 独孤剑走偏锋&source=进程（process）和线程（thread）是操作系统中的两个基本概念，但是这两个的概念有些抽象，所以这里用类比的方法介绍一下这两个的概念，方便理解。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://eviler.top/articles/process-and-thread/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《进程与线程》 — 独孤剑走偏锋&url=https://eviler.top/articles/process-and-thread/&via=https://eviler.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://eviler.top/articles/process-and-thread/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Eviler Zhao &copy; 2018 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://eviler.top/articles/process-and-thread/&title=《进程与线程》 — 独孤剑走偏锋&pic=https://eviler.top/img/eviler.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://eviler.top/articles/process-and-thread/&title=《进程与线程》 — 独孤剑走偏锋&source=进程（process）和线程（thread）是操作系统中的两个基本概念，但是这两个的概念有些抽象，所以这里用类比的方法介绍一下这两个的概念，方便理解。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://eviler.top/articles/process-and-thread/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《进程与线程》 — 独孤剑走偏锋&url=https://eviler.top/articles/process-and-thread/&via=https://eviler.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://eviler.top/articles/process-and-thread/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLklEQVR42u3ay26DMBAF0P7/T6fbSg303jGphDmsIkiCjxejefjrK75eP66fd35/5+jz7+8nb7n4wsDAuC3jdXoljPZX579Nnr6hYmBgPIBxFMHaRZ9v0Po3D+9jYGBgLCyi3QIMDAyMdUZ+53zpSbmLgYGB0Raxs4K2LU0/XotjYGDckJF33f//80fmGxgYGLdivMprZW541RrevAUDA2NrRh7g8kK0vdOyD49lYGBgPIAxa9mfL26WdOaNvChyY2Bg3JzRtrGSYWQRIuNw/EcQx8DA2JqRN/3b4WL+dFY8Y2BgPI2RP24HmclGtMllUe5iYGBswZgdbmiPSrQFc52AYmBgbM1oG2QrS7/qgMXhrzAwMB7AmPXbZ+G1PYqxNInFwMDYjjFL2vLwOgvTUQaIgYGxKSMPl/mu5M39/I318BIDA2MjxqdHAm0R26aJf/QRMTAwtmPMjkfMWnJLO5134zAwMLZgXJv2XVXotk1ADAyMvRkrBy/a1PCq0UKU22JgYGzHaNOylZFn/sZ6yzAwMB7AaANu24ybpaF5Mw4DA+MJjLx8nYXaeln5aREMDIytGa/yyoeUSXKZB/o6KcTAwNiIcVnM/liJm28fBgbG3oxZkD0vWWehNhpStn+NgYGxESMPfG0Un40K2tViYGBgJAODfFSZh/ii8YeBgYERk9oR6SzIvnkjBgbGAxht+FspcZNl1Uc0MDAwtmYslY7l0HEdvzTIxMDAuB/jG10DQc/6EnkgAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '君于何处?待君归来~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '君归矣，善哉！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
