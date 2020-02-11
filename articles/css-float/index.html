@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <link rel="canonical" href="true/articles/css-float/">
+    
+    
+    <title>关于CSS属性float | 独孤剑走偏锋</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#000000">
+    
+    
+    <meta name="keywords" content="CSS/CSS3">
+    <meta name="description" content="float CSS属性指定一个元素应沿其容器的左侧或右侧放置，允许文本和内敛元素环绕它。该元素从网页的正常流动（文档流）中移除，尽管任然保持部分的流动性。">
+<meta name="keywords" content="CSS&#x2F;CSS3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于CSS属性float">
+<meta property="og:url" content="https://eviler.top/articles/css-float/index.html">
+<meta property="og:site_name" content="独孤剑走偏锋">
+<meta property="og:description" content="float CSS属性指定一个元素应沿其容器的左侧或右侧放置，允许文本和内敛元素环绕它。该元素从网页的正常流动（文档流）中移除，尽管任然保持部分的流动性。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://eviler.top/articles/css-float/float-browser-support.png">
+<meta property="og:image" content="https://eviler.top/articles/css-float/comparison_map1.png">
+<meta property="og:image" content="https://eviler.top/articles/css-float/comparison_map2.png">
+<meta property="og:image" content="https://eviler.top/articles/css-float/comparison_map3.png">
+<meta property="og:image" content="https://eviler.top/articles/css-float/clearfixed.png">
+<meta property="og:image" content="https://eviler.top/articles/css-float/not_clearfix.png">
+<meta property="og:updated_time" content="2020-02-11T02:17:03.883Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于CSS属性float">
+<meta name="twitter:description" content="float CSS属性指定一个元素应沿其容器的左侧或右侧放置，允许文本和内敛元素环绕它。该元素从网页的正常流动（文档流）中移除，尽管任然保持部分的流动性。">
+<meta name="twitter:image" content="https://eviler.top/articles/css-float/float-browser-support.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="独孤剑走偏锋" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/eviler.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide"
+     >
+    <div class="inner flex-row-vertical">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+            <i class="icon icon-lg icon-close"></i>
+        </a>
+        <div class="brand-wrap" style="background-image:url(/img/headBack.jpg)">
+            <div class="brand">
+                <a href="/" class="avatar waves-effect waves-circle waves-light">
+                    <img src="/img/eviler.png">
+                </a>
+                <hgroup class="introduce">
+                    <h5 class="nickname">
+                        Eviler Zhao
+                    </h5>
+                    <a href="mailto:eviler_zhao@163.com" title="eviler_zhao@163.com" class="mail">eviler_zhao@163.com</a>
+                </hgroup>
+            </div>
+        </div>
+        <div class="scroll-wrap flex-col">
+            <ul class="nav">
+                
+                <li class="waves-block waves-effect">
+                    <a href="/"  >
+                        <i class="icon icon-lg icon-home"></i>
+                        主页
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="/archives"  >
+                        <i class="icon icon-lg icon-archives"></i>
+                        归档
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="/tags"  >
+                        <i class="icon icon-lg icon-tags"></i>
+                        标签
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="/categories"  >
+                        <i class="icon icon-lg icon-th-list"></i>
+                        分类
+                    </a>
+                </li>
+                
+                <li class="waves-block waves-effect">
+                    <a href="https://github.com/evilerSS" target="_blank"
+                         >
+                        <i class="icon icon-lg icon-github"></i>
+                        Github
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">关于CSS属性float</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">关于CSS属性float</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-02-10T12:24:27.000Z" itemprop="datePublished" class="page-time">
+  2020-02-10
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基本用法"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本用法</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#浮动元素"><span class="post-toc-number">2.</span> <span class="post-toc-text">浮动元素</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#定义"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">定义</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何定位"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">如何定位</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#浮动产生的副作用"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">浮动产生的副作用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何清除浮动"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">如何清除浮动</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-css-float"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">关于CSS属性float</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-02-10 20:24:27" datetime="2020-02-10T12:24:27.000Z"  itemprop="datePublished">2020-02-10</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>float CSS属性指定一个元素应沿其容器的左侧或右侧放置，允许文本和内敛元素环绕它。该元素从网页的正常流动（文档流）中移除，尽管任然保持部分的流动性。<br><a id="more"></a></p>
+<h1 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h1><pre><code>float: none | left | right | inline-start | inline-end
+</code></pre><table>
+<thead>
+<tr>
+<th style="text-align:left">属性值</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">none</td>
+<td style="text-align:left">表明元素不进行浮动</td>
+</tr>
+<tr>
+<td style="text-align:left">left</td>
+<td style="text-align:left">表明元素必须浮动在其所在的块容器左侧</td>
+</tr>
+<tr>
+<td style="text-align:left">right</td>
+<td style="text-align:left">表明元素必须浮动在其所在的块容器右侧</td>
+</tr>
+<tr>
+<td style="text-align:left">inline-start</td>
+<td style="text-align:left">明元素必须浮动在其所在块容器的开始一侧，在ltr脚本中是左侧，在rtl脚本中是右侧</td>
+</tr>
+<tr>
+<td style="text-align:left">inline-end</td>
+<td style="text-align:left">表明元素必须浮动在其所在块容器的结束一侧，在ltr脚本中是右侧，在rtl脚本中是左侧</td>
+</tr>
+</tbody>
+</table>
+<p>下图为浏览器对float和对float属性值的支持情况：</p>
+<div stype="padding: 0 5%"><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/articles/css-float/float-browser-support.png" alt="浏览器对float和对float属性值的支持情况" title="">
+                </div>
+                <div class="image-caption">浏览器对float和对float属性值的支持情况</div>
+            </figure></div>
+
+<h1 id="浮动元素"><a href="#浮动元素" class="headerlink" title="浮动元素"></a>浮动元素</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>浮动元素是指float 属性的计算值非 none 的元素。</p>
+<h2 id="如何定位"><a href="#如何定位" class="headerlink" title="如何定位"></a>如何定位</h2><p>当一个元素浮动之后，它会被移出正常的文档流，然后向左或者向右平移，一直平移直到<b>碰到了所处的容器的边框</b>，或者<b>碰到另外一个浮动的元素</b></p>
+<h2 id="浮动产生的副作用"><a href="#浮动产生的副作用" class="headerlink" title="浮动产生的副作用"></a>浮动产生的副作用</h2><ol>
+<li>块状元素会被浮动元素覆盖, 如图：<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/articles/css-float/comparison_map1.png" alt="块状元素被浮动元素覆盖" title="">
+                </div>
+                <div class="image-caption">块状元素被浮动元素覆盖</div>
+            </figure></li>
+<li>行内元素，例如文字，会环绕在浮动元素周围，为浮动元素留出空间，如图<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/articles/css-float/comparison_map2.png" alt="行内元素环绕在浮动元素周围，为浮动元素留出空间" title="">
+                </div>
+                <div class="image-caption">行内元素环绕在浮动元素周围，为浮动元素留出空间</div>
+            </figure></li>
+<li>浮动元素父元素塌缩，如图：<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/articles/css-float/comparison_map3.png" alt="浮动元素父元素塌缩" title="">
+                </div>
+                <div class="image-caption">浮动元素父元素塌缩</div>
+            </figure>
+</li>
+</ol>
+<h2 id="如何清除浮动"><a href="#如何清除浮动" class="headerlink" title="如何清除浮动"></a>如何清除浮动</h2><p>下面假设一个应用场景：一个无序列表ol，里面的列表项li自动按序排列且个数不确定，ul需要一个背景:<br>理想情况应该是这样的：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/articles/css-float/clearfixed.png" alt="应用场景理想情况表现" title="">
+                </div>
+                <div class="image-caption">应用场景理想情况表现</div>
+            </figure><br>但是如果使用了浮动就会出现下面这种情况：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/articles/css-float/not_clearfix.png" alt="应用场景使用浮动表现" title="">
+                </div>
+                <div class="image-caption">应用场景使用浮动表现</div>
+            </figure><br>这种情况的代码如下（所有li标签使用了 float: left）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul style=&quot;width: 100%; background: hsl(360, 50%, 50%)&quot;&gt;</span><br><span class="line">  &lt;li style=&quot;width: 33%; float: left; background: hsl(240, 50%, 50%);&quot;&gt;</span><br><span class="line">    item1</span><br><span class="line">  &lt;/li&gt;</span><br><span class="line">  &lt;li style=&quot;width: 33%; float: left; background: hsl(240, 50%, 50%);&quot;&gt;</span><br><span class="line">    item2</span><br><span class="line">  &lt;/li&gt;</span><br><span class="line">  &lt;li style=&quot;width: 33%; float: left; background: hsl(240, 50%, 50%);&quot;&gt;</span><br><span class="line">    item3</span><br><span class="line">  &lt;/li&gt;</span><br><span class="line">  &lt;li</span><br><span class="line">    style=&quot;width: 33%; float: left; background: hsl(240, 50%, 50%);margin-right: 1%;&quot;</span><br><span class="line">  &gt;</span><br><span class="line">    item4</span><br><span class="line">  &lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure></p>
+<p>我们发现，使用浮动以后并没有达到我们想要的结果，事实上，ul元素的高度为0，也就是出现了元素塌缩的情况，这就是li元素使用了浮动造成的结果。为了达到我们需要的理想效果，我们需要清除浮动，那么如何清除呢？</p>
+<ol>
+<li>添加空元素<br>在浮动元素下方添加一个非浮动元素，也就是在15行和16行代码之间插一句:<pre><code>&lt;div style=&quot;clear: both&quot;&gt;&lt;/div&gt;
+</code></pre>原理：容器现在必须考虑非浮动子元素的位置，而后者肯定出现在浮动元素下方，所以显示出来，父容器就把所有子元素都包括进去了。<br>缺点：在页面中增加冗余标签，违背了语义化的原则。</li>
+<li>浮动的父容器<br>将父元素容器也改成浮动元素，这样它就可以带着子元素一起浮动了，将第一行的代码：<pre><code>&lt;ul style=&quot;width: 100%; background: hsl(360, 50%, 50%)&quot;&gt;
+</code></pre>改成（加上 float:left ）：<pre><code>&lt;ul style=&quot;float:left; width: 100%; background: hsl(360, 50%, 50%)&quot;&gt;
+</code></pre>缺点：这样虽然解决了当前的这个问题，但是这样父容器ul又变成了浮动元素，可能会影响到后面的元素，而且有时候，父容器是定位死的，无法变成浮动。<br><b>不推荐使用这种方法</b></li>
+<li>父元素加上 overflow: hidden 样式<br>将第一行的代码：<pre><code>&lt;ul style=&quot;width: 100%; background: hsl(360, 50%, 50%)&quot;&gt;
+</code></pre>改成（加上 overflow: hidden ）：<pre><code>&lt;ul style=&quot;overflow: hidden; width: 100%; background: hsl(360, 50%, 50%)&quot;&gt;
+</code></pre>缺点：一个是IE6不支持，另一个是一旦子元素的大小超过父容器的大小，就会出显示问题。</li>
+<li><p>父元素添加 :after 伪元素<br>在样式表中添加以下样式类：</p>
+<pre><code>.clearfix::after {
+  content: &quot; &quot;; /* 内容设置为空白字符 */
+  display: block; /* 确保这个空白字符是非浮动的独立区块 */
+  clear: both; /* 确保这个空白字符是非浮动的独立区块 */
+  height: 0; /* 不让空白字符显示出来 */
+}
+.clearfix {
+  zoom: 1;
+  /* 不支持IE6 ::after 属性，这条属性可以激活父元素的&quot;hasLayout&quot;属性，使得能够兼容IE6 */
+}
+</code></pre><p>然后将第一行的代码：</p>
+<pre><code>&lt;ul style=&quot;width: 100%; background: hsl(360, 50%, 50%)&quot;&gt;
+</code></pre><p>改成（加上 clearfix 类）：</p>
+<pre><code>&lt;ul class=&quot;clearfix&quot; style=&quot;width: 100%; background: hsl(360, 50%, 50%)&quot;&gt;
+</code></pre><p><b>这是目前最为流行、最推荐的方法</b><br><a href="http://nicolasgallagher.com/micro-clearfix-hack/" target="_blank" rel="noopener">Nicolas Gallagher</a> 贴出了更通用的生产代码：</p>
+<pre><code>.cf:before,
+.cf:after {
+    content: &quot; &quot;;
+    display: table;
+}
+
+.cf:after {
+    clear: both;
+}
+
+/**
+* For IE 6/7 only
+* Include this rule to trigger hasLayout and contain floats.
+*/
+.cf {
+    *zoom: 1;
+}
+</code></pre></li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-02-11T02:17:03.883Z" itemprop="dateUpdated">2020-02-11 10:17:03</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://eviler.top">
+            <img src="/img/eviler.png" alt="Eviler Zhao">
+            Eviler Zhao
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS-CSS3/">CSS/CSS3</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://eviler.top/articles/css-float/&title=《关于CSS属性float》 — 独孤剑走偏锋&pic=https://eviler.top/img/eviler.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://eviler.top/articles/css-float/&title=《关于CSS属性float》 — 独孤剑走偏锋&source=float CSS属性指定一个元素应沿其容器的左侧或右侧放置，允许文本和内敛元素环绕它。该元素从网页的正常流动（文档流）中移除，尽管任然保持部分的流动性。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://eviler.top/articles/css-float/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《关于CSS属性float》 — 独孤剑走偏锋&url=https://eviler.top/articles/css-float/&via=https://eviler.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://eviler.top/articles/css-float/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/articles/process-and-thread/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">进程与线程</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Eviler Zhao &copy; 2018 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://eviler.top/articles/css-float/&title=《关于CSS属性float》 — 独孤剑走偏锋&pic=https://eviler.top/img/eviler.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://eviler.top/articles/css-float/&title=《关于CSS属性float》 — 独孤剑走偏锋&source=float CSS属性指定一个元素应沿其容器的左侧或右侧放置，允许文本和内敛元素环绕它。该元素从网页的正常流动（文档流）中移除，尽管任然保持部分的流动性。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://eviler.top/articles/css-float/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《关于CSS属性float》 — 独孤剑走偏锋&url=https://eviler.top/articles/css-float/&via=https://eviler.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://eviler.top/articles/css-float/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABw0lEQVR42u3aOXLDMBAEQP3/03SqRPQMlgRlVyNS6YAaDLb2wOsVr+Ntvb+TfHq+5+uOhYuLO+Yep+v8O8nfn++TG3Bxcfdzk7+59pBJ4MPFxf1b3CRxydMgXFzc/8Q9D15X7Y+Li/sUN09Hrmqv3F6r4eLiDrjzxGX++pb+Li4u7hL3KNda4Gt3+LgzLi7uFm47EJ23R9cGsbi4uM9y5+PVUdFyWiDh4uI+xc2DTtK8aANf9IBwcXG3cJMft4gkzOVjV1xc3Ke41w5EJ62QX4ofXFzch7jtFmsD2jwxqrs1uLi4A27e0Dw/5aSMyXfGxcXdw01YefGTD1nXGii4uLh7uEXuE+RKa22OYk9cXNwt3KQgWRupTi5eFFc0cHFxb+O2BUkRaAZlUnGPDBcX92buJACtDWWTR4CLi/sUdzIiXUt98gNHp8HFxb2Ie5QraWqsBawoScLFxd3CzVfe1swvW+RXNOrD4OLijrl3pC/tBa9iKIuLi7uR24402oFoO8ot+ru4uLhfwF0LfHVjtO2a4OLiPspdvNnR9nE/fRMXF3cjNwlMeRnT7lk8CFxc3C3cSdDJxyd5AlS0SHBxca/n/gC2fSn47yiZNgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '君于何处?待君归来~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '君归矣，善哉！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
